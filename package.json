@@ -1,0 +1,28 @@
+{
+  "name": "go-bananas",
+  "version": "0.0.1",
+  "description": "Go Bananas",
+  "engines": {
+    "node": ">=0.10.33"
+  },
+  "author": "Webmonkeys - Ferry Kobus",
+  "main": "./index.js",
+  "dependencies": {
+    "connect": "~3.3.2",
+    "cookie-session": "~1.1.0"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "scripts": {
+    "pretest": "jshint index.js lib test"
+  },
+  "devDependencies": {
+    "mocha": "~2.0.1",
+    "jshint": "~2.5.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FKobus/go-bananas.git"
+  }
+}
