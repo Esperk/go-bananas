@@ -1,0 +1,13 @@
+@import "compass";
+@import "compass/reset";
+@import "susy";
+
+*:focus { 
+	outline: 0 !important; 
+	outline: none !important;
+}
+
+html, body {
+	background: #ebe5d3;
+	height: 100%;
+}
