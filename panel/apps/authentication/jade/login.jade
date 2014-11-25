@@ -1,0 +1,22 @@
+doctype html
+html
+	include /jade/head.jade
+	body
+		div.login
+			img(
+				src='/panel/themes/default/images/go-bananas-logo.png'
+				width='387'
+				height='123'
+			)
+			div.form
+				input(
+					type='text'
+					name='username'
+					placeholder='Username'
+				)
+				input(
+					type='password'
+					name='password'
+				)
+				span #{name}
+		
