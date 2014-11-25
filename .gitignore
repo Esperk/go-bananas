@@ -5,5 +5,5 @@ logs
 # Node modules (install them via npm install)
 node_modules
 
-# Files to ignore
-example_module.js
+# Sass cache
+.sass-cache
