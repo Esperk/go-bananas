@@ -1,28 +1,5 @@
 {
-	"showLoginForm": {
-		"field":{
-			"username": {
-				"label": "Username"
-			},
-			"password": {
-				"label": "Password"
-			}
-		},
-		"button": {
-			"login": {
-				"label": "Sign in"
-			}
-		},
-		"links": {
-			"signup": {
-				"label": "Signup"
-			},
-			"forgot_password": {
-				"label": "Forgot password?"
-			}
-		}
-	},
-	"showSignupForm": {
+	"authentication": {
 		"field": {
 			"email": {
 				"label": "Email address"
@@ -38,36 +15,25 @@
 			}
 		},
 		"button": {
-			"signup": {
-				"label": "Signup"
-			}
-		},
-		"links": {
-			"login": {
+			"sign_in": {
 				"label": "Sign in"
 			},
-			"forgot_password": {
-				"label": "Forgot password?"
-			}
-		}
-	},
-	"showRecoveryForm": {
-		"field": {
-			"email": {
-				"label": "Email address"
-			}
-		},
-		"button": {
+			"signup": {
+				"label": "Signup"
+			},
 			"recovery": {
 				"label": "Recover"
 			}
 		},
 		"links": {
+			"sign_in": {
+				"label": "Sign in"
+			},
 			"signup": {
 				"label": "Signup"
 			},
-			"login": {
-				"label": "Sign in"
+			"recovery": {
+				"label": "Forgot password?"
 			}
 		}
 	}

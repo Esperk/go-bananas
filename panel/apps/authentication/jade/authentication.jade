@@ -1,0 +1,29 @@
+include /jade/head.jade
+link(rel='stylesheet', href='/panel/themes/default/css/authentication.css')
+body
+	div.login
+		figure
+			img.logo(src='/panel/themes/default/images/go-bananas-logo.png')
+		form(method='POST', onsubmit='return validateForm(this);', novalidate)
+			if page != 'sign_in'
+				div.field
+					input(type='text', name='email', placeholder='#{language.field.email.label}', required)
+			if page == 'sign_in' || page == 'signup'
+				div.field
+					input(type='text', name='username', placeholder='#{language.field.username.label}', required)
+				div.field
+					input(type='password', name='password', placeholder='#{language.field.password.label}', required)
+			if page == 'signup'
+				div.field
+					input(type='password', name='confirm_password', placeholder='#{language.field.confirm.label}', required)
+			div.submit
+				input(type='submit', value='#{language.button[page].label}')
+			if page != 'signup'
+				div.links
+					a(href='/panel/signup') #{language.links.signup.label}
+			if page != 'recovery'
+				div.links
+					a(href='/panel/recovery') #{language.links.recovery.label}
+			if page != 'sign_in'
+				div.links
+					a(href='/panel/') #{language.links.sign_in.label}

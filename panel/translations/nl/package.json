@@ -1,28 +1,5 @@
 {
-	"showLoginForm": {
-		"field":{
-			"username": {
-				"label": "Gebruikersnaam"
-			},
-			"password": {
-				"label": "Wachtwoord"
-			}
-		},
-		"button": {
-			"login": {
-				"label": "Inloggen"
-			}
-		},
-		"links": {
-			"signup": {
-				"label": "Inschrijven"
-			},
-			"forgot_password": {
-				"label": "Wachtwoord vergeten?"
-			}
-		}
-	},
-	"showSignupForm": {
+	"authentication": {
 		"field": {
 			"email": {
 				"label": "E-mail adres"
@@ -38,46 +15,25 @@
 			}
 		},
 		"button": {
-			"signup": {
-				"label": "Aanmelden"
-			}
-		},
-		"links": {
-			"login": {
+			"sign_in": {
 				"label": "Inloggen"
 			},
-			"forgot_password": {
-				"label": "Wachtwoord vergeten?"
-			}
-		}
-	},
-	"showRecoveryForm": {
-		"field": {
-			"email": {
-				"label": "E-mail adres"
-			}
-		},
-		"button": {
+			"signup": {
+				"label": "Aanmelden"
+			},
 			"recovery": {
 				"label": "Herstellen"
 			}
 		},
 		"links": {
+			"sign_in": {
+				"label": "Inloggen"
+			},
 			"signup": {
 				"label": "Inschrijven"
 			},
-			"login": {
-				"label": "Inloggen"
-			}
-		}
-	},
-	"signupEmail": {
-		"intro": {
-			"welcome_text": "Welkom bla bla"
-		},
-		"field": {
-			"username": {
-				"label": "Gebruikersnaam"
+			"recovery": {
+				"label": "Wachtwoord vergeten?"
 			}
 		}
 	}

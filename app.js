@@ -11,7 +11,8 @@
 var bananas = require('./index.js'),
 	http = require('http'),
 	options = {
-		"mode": "dev"
+		"mode": "dev",
+		"language": "nl"
 	};
 
 http.createServer(bananas(options)).listen(1337);
