@@ -36,23 +36,26 @@ div.login {
 		background-color: #ffffff;
 		padding: 1.3em;
 		margin: 0 1em;
-
 		@include boxed(#f0c440);
-		@include box-sizing(border-box);
 
 		div.field {
+			margin-bottom: 1.5em;
+			
 			input {
 				width: 100%;
 				height: 3em;
-				margin-bottom: 1.5em;
 				padding-left: 1em;
-
 				@include boxed(#e9e9e9);
-				@include box-sizing(border-box);
 
 				&.required {
 					@include boxed(#fda0a0);
 				}
+			}
+			&.error {
+				padding-left: 1em;
+				font-size: 0.7em;
+				font-weight: bold;
+				color: #ff2727;
 			}
 		}
 

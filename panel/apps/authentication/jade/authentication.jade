@@ -5,17 +5,25 @@ body
 		figure
 			img.logo(src='/panel/themes/default/images/go-bananas-logo.png')
 		form(method='POST', onsubmit='return validateForm(this);', novalidate)
+			if error
+				div.field.error
+					if error.username
+						span #{language.field.error.username}
+					else if error.combination
+						span #{language.field.error.combination}
+					else 
+						span #{language.field.error.general}
 			if page != 'sign_in'
 				div.field
-					input(type='text', name='email', placeholder='#{language.field.email.label}', required)
+					input(type='text', name='email', placeholder='#{language.field.email.label}', required, value='ferry@famkob.us')
 			if page == 'sign_in' || page == 'signup'
 				div.field
-					input(type='text', name='username', placeholder='#{language.field.username.label}', required)
+					input(type='text', name='username', placeholder='#{language.field.username.label}', required, value='test')
 				div.field
-					input(type='password', name='password', placeholder='#{language.field.password.label}', required)
+					input(type='password', name='password', placeholder='#{language.field.password.label}', required, value='test')
 			if page == 'signup'
 				div.field
-					input(type='password', name='confirm_password', placeholder='#{language.field.confirm.label}', required)
+					input(type='password', name='confirm_password', placeholder='#{language.field.confirm.label}', required, value='test')
 			div.submit
 				input(type='submit', value='#{language.button[page].label}')
 			if page != 'signup'

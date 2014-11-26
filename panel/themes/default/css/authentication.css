@@ -53,11 +53,14 @@ div.login form {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+/* line 41, ../sass/authentication.scss */
+div.login form div.field {
+  margin-bottom: 1.5em;
+}
 /* line 44, ../sass/authentication.scss */
 div.login form div.field input {
   width: 100%;
   height: 3em;
-  margin-bottom: 1.5em;
   padding-left: 1em;
   border: 1px solid #e9e9e9;
   -moz-border-radius: 0.25em;
@@ -70,7 +73,7 @@ div.login form div.field input {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 53, ../sass/authentication.scss */
+/* line 50, ../sass/authentication.scss */
 div.login form div.field input.required {
   border: 1px solid #fda0a0;
   -moz-border-radius: 0.25em;
@@ -79,12 +82,22 @@ div.login form div.field input.required {
   -moz-box-shadow: #f09898 0px 1px 0px;
   -webkit-box-shadow: #f09898 0px 1px 0px;
   box-shadow: #f09898 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-/* line 59, ../sass/authentication.scss */
+/* line 54, ../sass/authentication.scss */
+div.login form div.field.error {
+  padding-left: 1em;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #ff2727;
+}
+/* line 62, ../sass/authentication.scss */
 div.login form div.submit {
   text-align: center;
 }
-/* line 62, ../sass/authentication.scss */
+/* line 65, ../sass/authentication.scss */
 div.login form div.submit input[type="submit"] {
   border: 0px;
   background-color: #453519;
@@ -99,7 +112,7 @@ div.login form div.submit input[type="submit"] {
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
 }
-/* line 66, ../sass/authentication.scss */
+/* line 69, ../sass/authentication.scss */
 div.login form div.links {
   text-align: center;
 }

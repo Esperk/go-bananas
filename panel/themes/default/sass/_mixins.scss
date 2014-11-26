@@ -9,6 +9,7 @@
 	border: 1px solid $base-color;
 	@include border-radius(0.25em);
 	@include box-shadow(shade($base-color, 5%) 0px 1px 0px);
+	@include box-sizing(border-box);
 }
 
 @mixin button($base-color, $inverted:false) {

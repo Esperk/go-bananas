@@ -4,10 +4,10 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
   name: String,
   password: String,
-  secure_key: String,
-  secret: String,
+  email: String,
   last_ip: String,
-  last_visit: String,
+  last_visit: { type: Date, default: Date.now },
+  secret: String,
   active: Boolean,
   recovery: Date,
   created: { type: Date, default: Date.now },
@@ -16,7 +16,6 @@ var userSchema = new Schema({
   gender: { type: String, default: 'm'},
   firstname: String,
   lastname: String,
-  email: String,
   timezone: String
 });
 

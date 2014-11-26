@@ -1,6 +1,11 @@
 {
 	"authentication": {
 		"field": {
+			"error": {
+				"username": "Helaas, deze gebruikersnaam is al bezet",
+				"combination": "Sorry, de combinatie tussen de gebruikersnaam en wachtwoord klopt niet",
+				"general": "Oeps, er is een onbekende error opgetreden..."
+			},
 			"email": {
 				"label": "E-mail adres"
 			},

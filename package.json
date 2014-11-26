@@ -15,7 +15,8 @@
     "serve-static": "~1.7.1",
     "querystring": "~0.2.0",
     "utils-merge": "~1.0.0",
-    "cookies": "~0.5.0"
+    "cookies": "~0.5.0",
+    "twin-bcrypt": "~2.1.0"
   },
   "directories": {
     "lib": "./lib"

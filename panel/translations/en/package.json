@@ -1,6 +1,11 @@
 {
 	"authentication": {
 		"field": {
+			"error": {
+				"username": "Sorry, the username is already taken",
+				"combination": "Sorry, the provided username and password didn't match",
+				"general": "Oops, an error occurred..."
+			},
 			"email": {
 				"label": "Email address"
 			},
