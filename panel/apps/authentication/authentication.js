@@ -20,9 +20,10 @@ function Authentication() {
 		var pages = ['signup', 'recovery'];
 
 		// handle post
-		if (req.method === 'POST') {
-			console.log(res.body);
-			callback();
+		if (req.method === 'POST' && typeof req.params !== 'undefined' && ((typeof req.params[1] !== 'undefined' && pages.indexOf(req.params[1]) > -1) || typeof req.params[1] === 'undefined')) {
+			if(typeof req.params[1] === 'undefined') {
+				
+			}
 		} else if (typeof req.params !== 'undefined') {
 			languages.getTranslation('authentication', function(data) {
 				var page = '';
@@ -53,5 +54,10 @@ function Authentication() {
 		}
 	}
 }
+
+Authentication.prototype.login = function(username, password) {
+
+}
+
 
 module.exports = exports = Authentication;
