@@ -1,0 +1,114 @@
+/* line 5, ../sass/authentication.scss */
+html body {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+/* line 12, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+html body:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* line 14, ../sass/authentication.scss */
+div.login {
+  width: 100%;
+}
+/* line 17, ../sass/authentication.scss */
+div.login figure {
+  text-align: center;
+  padding-bottom: 1em;
+}
+/* line 22, ../sass/authentication.scss */
+div.login figure img.logo {
+  width: 50%;
+  height: auto;
+}
+/* line 28, ../sass/authentication.scss */
+div.login form {
+  background-color: #ffffff;
+  border: 1px solid #f0c440;
+  padding: 1.3em;
+  margin: 0 1em;
+  -moz-border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+  -moz-box-shadow: #ebb000 0px 1px 0px;
+  -webkit-box-shadow: #ebb000 0px 1px 0px;
+  box-shadow: #ebb000 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 39, ../sass/authentication.scss */
+div.login form div.field input {
+  width: 100%;
+  height: 3em;
+  margin-bottom: 1.5em;
+  padding-left: 1em;
+  border: 1px solid #e9e9e9;
+  -moz-border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+  -moz-box-shadow: #e3e2e3 0px 1px 0px;
+  -webkit-box-shadow: #e3e2e3 0px 1px 0px;
+  box-shadow: #e3e2e3 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 50, ../sass/authentication.scss */
+div.login form div.field input.required {
+  border: 1px solid #fda0a0;
+  -moz-box-shadow: #ff9090 0px 1px 0px;
+  -webkit-box-shadow: #ff9090 0px 1px 0px;
+  box-shadow: #ff9090 0px 1px 0px;
+}
+/* line 57, ../sass/authentication.scss */
+div.login form div.submit {
+  text-align: center;
+}
+/* line 60, ../sass/authentication.scss */
+div.login form div.submit input[type="submit"] {
+  border: 0px;
+  background-color: #453519;
+  height: 3em;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding-right: 2em;
+  padding-left: 2em;
+  margin-bottom: 1em;
+  text-shadow: black 1px 1px 0;
+  -moz-border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+}
+/* line 77, ../sass/authentication.scss */
+div.login form div.links {
+  text-align: center;
+}
+/* line 82, ../sass/authentication.scss */
+div.login div.test {
+  position: relative;
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 93, ../sass/authentication.scss */
+a {
+  color: #ebb000;
+  text-decoration: none;
+  font-size: 0.7em;
+}
+/* line 98, ../sass/authentication.scss */
+a:hover {
+  text-decoration: underline;
+}

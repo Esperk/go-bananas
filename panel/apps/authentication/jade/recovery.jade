@@ -18,23 +18,16 @@ html
 				div.field
 					input(
 						type='text'
-						name='username'
-						placeholder='#{field.username.label}'
-						required
-					)
-				div.field
-					input(
-						type='password'
-						name='password'
-						placeholder='#{field.password.label}'
+						name='email'
+						placeholder='#{field.email.label}'
 						required
 					)
 				div.submit
 					input(
 						type='submit'
-						value='#{button.login.label}'
+						value='#{button.recovery.label}'
 					)
 				div.links
-					a(href='/panel/signup') #{links.signup.label}
+					a(href='/panel/') #{links.login.label}
 				div.links.last
-					a(href='/panel/recovery') #{links.forgot_password.label}
+					a(href='/panel/signup/') #{links.signup.label}

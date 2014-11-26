@@ -70,7 +70,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 10, ../sass/theme.scss */
-html, body {
-  background: #ebe5d3;
+html {
   height: 100%;
+  font-family: "arial";
+  font-size: 1em;
+  background: #ebe5d3;
+}
+/* line 16, ../sass/theme.scss */
+html body {
+  max-width: 80em;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 12, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+html body:after {
+  content: " ";
+  display: block;
+  clear: both;
 }

@@ -1,1 +1,1 @@
-"use strict";window.onload=function(){};
+function validateForm(a){for(var b=a.querySelectorAll("input[required]"),c=0,d=0,e=b.length;e>d;d++){var f=b[d];""!==f.value||f.classList.contains(".required")?f.classList.remove("required"):(f.classList.add("required"),c++)}return 0===c?!0:!1}

@@ -7,7 +7,13 @@
 	outline: none !important;
 }
 
-html, body {
-	background: #ebe5d3;
+html {
 	height: 100%;
+	font-family: "arial";
+	font-size: 1em;
+	background: #ebe5d3;
+
+	body {
+		@include container(80em);		
+	}
 }

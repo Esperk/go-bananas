@@ -6,12 +6,16 @@
 
 "use strict";
 
+// globals
+global.__root = __dirname + '/';
+global.__lib = __dirname + '/lib/';
+global.__models = __dirname + '/models/';
+
+// modules
 var connect = require('connect'),
 	Bananas = require('./lib/bananas'),
 	serveStatic = require('serve-static'),
 	session = require('cookie-session');
-
-global.__root = __dirname + '/';
 
 module.exports = exports = function(options) {
 	options = options || {};

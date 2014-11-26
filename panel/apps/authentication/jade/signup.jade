@@ -10,11 +10,18 @@ html
 					src='/panel/themes/default/images/go-bananas-logo.png'
 				)
 			form(
-				action='/panel/'
+				action='/panel/signup/'
 				method='POST'
 				onsubmit='return validateForm(this);'
 				novalidate
 			)
+				div.field
+					input(
+						type='text'
+						name='email'
+						placeholder='#{field.email.label}'
+						required
+					)
 				div.field
 					input(
 						type='text'
@@ -29,12 +36,19 @@ html
 						placeholder='#{field.password.label}'
 						required
 					)
+				div.field
+					input(
+						type='password'
+						name='confirm_password'
+						placeholder='#{field.confirm.label}'
+						required
+					)
 				div.submit
 					input(
 						type='submit'
-						value='#{button.login.label}'
+						value='#{button.signup.label}'
 					)
 				div.links
-					a(href='/panel/signup') #{links.signup.label}
+					a(href='/panel/') #{links.login.label}
 				div.links.last
 					a(href='/panel/recovery') #{links.forgot_password.label}
