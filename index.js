@@ -35,7 +35,7 @@ module.exports = exports = function(opt) {
 	var server = connect()
 		// sessions
 		.use(session({
-			keys: ['key1', 'key2']
+			keys: ['key1']
 		}))
 		// cookies
 		.use(cookies())

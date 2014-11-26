@@ -6,9 +6,7 @@
 
 "use strict";
 
-var routes = require(__lib + 'routes'),
-	jade = require('jade'),
-	mongoose = require('mongoose'),
+var jade = require('jade'),
 	languages = require(__lib + 'languages'),
 	merge = require('utils-merge'),
 	User = require(__models + 'user'),
@@ -16,13 +14,23 @@ var routes = require(__lib + 'routes'),
 	crypto = require('crypto'),
 	jade_options = {
 		basedir: __root + 'panel/themes/default/'
-	};
+	},
+	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
 
 function Authentication() {
 	var self = this;
 
 	return function(req, res, callback) {
 		var pages = ['signup', 'recovery'];
+
+		if (typeof req.session.uid !== 'undefined' && req.session.ustr !== 'undefined') {
+			if (twinBcrypt.compareSync(req.session.uid + salt + req.connection.remoteAddress + req.headers['user-agent'], req.session.ustr)) {
+				callback(null, {
+					loggedIn: true
+				});
+				return;
+			}
+		}
 
 		// handle post
 		if (req.method === 'POST' && typeof req.params !== 'undefined' && ((typeof req.params[1] !== 'undefined' && ~pages.indexOf(req.params[1])) || typeof req.params[1] === 'undefined')) {
@@ -33,10 +41,14 @@ function Authentication() {
 						throw new Error(err);
 					}
 					if (result && twinBcrypt.compareSync(req.body.password, result.password)) {
-
-
-
-						callback();
+						req.session.uid = result._id;
+						req.session.ustr = twinBcrypt.hashSync(result._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
+						req.params.splice(pos, 1);
+						res.writeHead(302, {
+							'Location': '/' + req.params.join('/')
+						});
+						res.end();
+						return;
 					} else {
 						self.parse({
 							page: 'sign_in',
@@ -72,8 +84,10 @@ function Authentication() {
 						});
 						user.save(function(err, data) {
 							if (err) throw new Error(err);
-							// TODO: add cookie and redirect to login page ;)
-							//console.log(data);
+
+							req.session.uid = data._id;
+							req.session.ustr = twinBcrypt.hashSync(data._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
+						
 							var pos = req.params.indexOf(req.params[1]);
 							if (~pos) {
 								req.params.splice(pos, 1);
@@ -126,7 +140,5 @@ Authentication.prototype.parse = function(opt, callback) {
 		});
 	});
 }
-
-
 
 module.exports = exports = Authentication;
