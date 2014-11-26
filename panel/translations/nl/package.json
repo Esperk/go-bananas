@@ -1,0 +1,84 @@
+{
+	"showLoginForm": {
+		"field":{
+			"username": {
+				"label": "Gebruikersnaam"
+			},
+			"password": {
+				"label": "Wachtwoord"
+			}
+		},
+		"button": {
+			"login": {
+				"label": "Inloggen"
+			}
+		},
+		"links": {
+			"signup": {
+				"label": "Inschrijven"
+			},
+			"forgot_password": {
+				"label": "Wachtwoord vergeten?"
+			}
+		}
+	},
+	"showSignupForm": {
+		"field": {
+			"email": {
+				"label": "E-mail adres"
+			},
+			"username": {
+				"label": "Gebruikersnaam"
+			},
+			"password": {
+				"label": "Wachtwoord"
+			},
+			"confirm": {
+				"label": "Bevestig wachtwoord"
+			}
+		},
+		"button": {
+			"signup": {
+				"label": "Aanmelden"
+			}
+		},
+		"links": {
+			"login": {
+				"label": "Inloggen"
+			},
+			"forgot_password": {
+				"label": "Wachtwoord vergeten?"
+			}
+		}
+	},
+	"showRecoveryForm": {
+		"field": {
+			"email": {
+				"label": "E-mail adres"
+			}
+		},
+		"button": {
+			"recovery": {
+				"label": "Herstellen"
+			}
+		},
+		"links": {
+			"signup": {
+				"label": "Inschrijven"
+			},
+			"login": {
+				"label": "Inloggen"
+			}
+		}
+	},
+	"signupEmail": {
+		"intro": {
+			"welcome_text": "Welkom bla bla"
+		},
+		"field": {
+			"username": {
+				"label": "Gebruikersnaam"
+			}
+		}
+	}
+}

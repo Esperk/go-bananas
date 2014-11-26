@@ -1,3 +1,9 @@
+/*
+ * Go Bananas
+ *
+ * Main scss
+ */
+
 @import "compass";
 @import "compass/reset";
 @import "susy";
@@ -14,6 +20,16 @@ html {
 	background: #ebe5d3;
 
 	body {
-		@include container(80em);		
+		@include container(80em);
+
+		a {
+			color: #ebb000;
+			text-decoration: none;
+			font-size: 0.7em;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 }

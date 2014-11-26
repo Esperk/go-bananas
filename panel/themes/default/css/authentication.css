@@ -1,4 +1,14 @@
-/* line 5, ../sass/authentication.scss */
+/*
+ * Go Bananas
+ *
+ * Authentication css
+ */
+/*
+ * Go Bananas
+ *
+ * Mixins scss
+ */
+/* line 12, ../sass/authentication.scss */
 html body {
   max-width: 600px;
   margin-left: auto;
@@ -13,37 +23,37 @@ html body:after {
   clear: both;
 }
 
-/* line 14, ../sass/authentication.scss */
+/* line 21, ../sass/authentication.scss */
 div.login {
   width: 100%;
 }
-/* line 17, ../sass/authentication.scss */
+/* line 24, ../sass/authentication.scss */
 div.login figure {
   text-align: center;
   padding-bottom: 1em;
 }
-/* line 22, ../sass/authentication.scss */
+/* line 29, ../sass/authentication.scss */
 div.login figure img.logo {
   width: 50%;
   height: auto;
 }
-/* line 28, ../sass/authentication.scss */
+/* line 35, ../sass/authentication.scss */
 div.login form {
   background-color: #ffffff;
-  border: 1px solid #f0c440;
   padding: 1.3em;
   margin: 0 1em;
+  border: 1px solid #f0c440;
   -moz-border-radius: 0.25em;
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
-  -moz-box-shadow: #ebb000 0px 1px 0px;
-  -webkit-box-shadow: #ebb000 0px 1px 0px;
-  box-shadow: #ebb000 0px 1px 0px;
+  -moz-box-shadow: #e4ba3c 0px 1px 0px;
+  -webkit-box-shadow: #e4ba3c 0px 1px 0px;
+  box-shadow: #e4ba3c 0px 1px 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 39, ../sass/authentication.scss */
+/* line 44, ../sass/authentication.scss */
 div.login form div.field input {
   width: 100%;
   height: 3em;
@@ -53,25 +63,28 @@ div.login form div.field input {
   -moz-border-radius: 0.25em;
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
-  -moz-box-shadow: #e3e2e3 0px 1px 0px;
-  -webkit-box-shadow: #e3e2e3 0px 1px 0px;
-  box-shadow: #e3e2e3 0px 1px 0px;
+  -moz-box-shadow: #dddddd 0px 1px 0px;
+  -webkit-box-shadow: #dddddd 0px 1px 0px;
+  box-shadow: #dddddd 0px 1px 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 50, ../sass/authentication.scss */
+/* line 53, ../sass/authentication.scss */
 div.login form div.field input.required {
   border: 1px solid #fda0a0;
-  -moz-box-shadow: #ff9090 0px 1px 0px;
-  -webkit-box-shadow: #ff9090 0px 1px 0px;
-  box-shadow: #ff9090 0px 1px 0px;
+  -moz-border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+  border-radius: 0.25em;
+  -moz-box-shadow: #f09898 0px 1px 0px;
+  -webkit-box-shadow: #f09898 0px 1px 0px;
+  box-shadow: #f09898 0px 1px 0px;
 }
-/* line 57, ../sass/authentication.scss */
+/* line 59, ../sass/authentication.scss */
 div.login form div.submit {
   text-align: center;
 }
-/* line 60, ../sass/authentication.scss */
+/* line 62, ../sass/authentication.scss */
 div.login form div.submit input[type="submit"] {
   border: 0px;
   background-color: #453519;
@@ -79,36 +92,14 @@ div.login form div.submit input[type="submit"] {
   cursor: pointer;
   color: #ffffff;
   font-weight: bold;
-  padding-right: 2em;
-  padding-left: 2em;
+  padding: 0 2em;
   margin-bottom: 1em;
-  text-shadow: black 1px 1px 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
   -moz-border-radius: 0.25em;
   -webkit-border-radius: 0.25em;
   border-radius: 0.25em;
 }
-/* line 77, ../sass/authentication.scss */
+/* line 66, ../sass/authentication.scss */
 div.login form div.links {
   text-align: center;
-}
-/* line 82, ../sass/authentication.scss */
-div.login div.test {
-  position: relative;
-  width: 100%;
-  padding-right: 20px;
-  padding-left: 20px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 93, ../sass/authentication.scss */
-a {
-  color: #ebb000;
-  text-decoration: none;
-  font-size: 0.7em;
-}
-/* line 98, ../sass/authentication.scss */
-a:hover {
-  text-decoration: underline;
 }

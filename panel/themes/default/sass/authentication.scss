@@ -1,5 +1,12 @@
+/*
+ * Go Bananas
+ *
+ * Authentication css
+ */
+
 @import "compass";
 @import "susy";
+@import "mixins";
 
 html {
 	body {
@@ -27,12 +34,10 @@ div.login {
 
 	form {
 		background-color: #ffffff;
-		border: 1px solid #f0c440;
 		padding: 1.3em;
 		margin: 0 1em;
 
-		@include border-radius(0.25em);
-		@include box-shadow(#ebb000 0px 1px 0px);
+		@include boxed(#f0c440);
 		@include box-sizing(border-box);
 
 		div.field {
@@ -41,15 +46,12 @@ div.login {
 				height: 3em;
 				margin-bottom: 1.5em;
 				padding-left: 1em;
-				border: 1px solid #e9e9e9;
-				
-				@include border-radius(0.25em);
-				@include box-shadow(#e3e2e3 0px 1px 0px);
+
+				@include boxed(#e9e9e9);
 				@include box-sizing(border-box);
 
 				&.required {
-					border: 1px solid #fda0a0;
-					@include box-shadow(#ff9090 0px 1px 0px);
+					@include boxed(#fda0a0);
 				}
 			}
 		}
@@ -58,44 +60,11 @@ div.login {
 			text-align: center;
 			
 			input[type="submit"] {
-				border: 0px;
-				background-color: #453519;
-				height: 3em;
-				cursor: pointer;
-				color: #ffffff;
-				font-weight: bold;
-				padding: {
-					right: 2em;
-					left: 2em;
-				}
-				margin-bottom: 1em;
-
-				@include text-shadow(rgba(#000000, 1) 1px 1px 0);
-				@include border-radius(0.25em);
+				@include button(#453519);
 			}
 		}
 		div.links {
 			text-align: center;
 		}
-	}
-
-	div.test {
-		position: relative;
-		width: 100%;
-		padding: {
-			right: 20px;
-			left: 20px;
-		}
-		@include box-sizing(border-box);
-	}
-}
-
-a {
-	color: #ebb000;
-	text-decoration: none;
-	font-size: 0.7em;
-
-	&:hover {
-		text-decoration: underline;
 	}
 }

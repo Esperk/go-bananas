@@ -1,0 +1,35 @@
+/*
+ * Go Bananas
+ *
+ * Mixins scss
+ */
+@import "compass";
+
+@mixin boxed($base-color) {
+	border: 1px solid $base-color;
+	@include border-radius(0.25em);
+	@include box-shadow(shade($base-color, 5%) 0px 1px 0px);
+}
+
+@mixin button($base-color, $inverted:false) {
+	border: 0px;
+	background-color: $base-color;
+	height: 3em;
+	cursor: pointer;
+	@if $inverted {
+		color: #000000;
+	}
+	@else {
+		color: #ffffff;
+	}
+	font-weight: bold;
+	padding: 0 2em;
+	margin-bottom: 1em;
+	@if $inverted {
+		@include text-shadow(rgba(#ffffff, 0.5) 1px 1px 0);
+	}
+	@else {
+		@include text-shadow(rgba(#000000, 0.5) 1px 1px 0);
+	}
+	@include border-radius(0.25em);
+}

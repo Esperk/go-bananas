@@ -1,3 +1,8 @@
+/*
+ * Go Bananas
+ *
+ * Main scss
+ */
 /* line 5, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -63,20 +68,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 5, ../sass/theme.scss */
+/* line 11, ../sass/theme.scss */
 *:focus {
   outline: 0 !important;
   outline: none !important;
 }
 
-/* line 10, ../sass/theme.scss */
+/* line 16, ../sass/theme.scss */
 html {
   height: 100%;
   font-family: "arial";
   font-size: 1em;
   background: #ebe5d3;
 }
-/* line 16, ../sass/theme.scss */
+/* line 22, ../sass/theme.scss */
 html body {
   max-width: 80em;
   margin-left: auto;
@@ -87,4 +92,14 @@ html body:after {
   content: " ";
   display: block;
   clear: both;
+}
+/* line 25, ../sass/theme.scss */
+html body a {
+  color: #ebb000;
+  text-decoration: none;
+  font-size: 0.7em;
+}
+/* line 30, ../sass/theme.scss */
+html body a:hover {
+  text-decoration: underline;
 }
