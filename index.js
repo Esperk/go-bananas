@@ -26,7 +26,7 @@ module.exports = exports = function(opt) {
 	var app = new Bananas(options);
 	
 	// serve static files
-	var serve = serveStatic("./");
+	var serve = serveStatic("./", {maxAge: 3600000});
 
 	// routes
 	var routes = new Routes(options);
