@@ -23,6 +23,16 @@ function Authentication() {
 	return function(req, res, callback) {
 		var pages = ['signup', 'recovery'];
 
+		// logout, no need to parse the rest
+		if (typeof req.params[1] !== 'undefined' && req.params[1] === 'logout') {
+			req.session = null;
+			res.writeHead(302, {
+				'Location': '/panel/'
+			});
+			res.end();
+			return;
+		}
+
 		if (typeof req.session.uid !== 'undefined' && req.session.ustr !== 'undefined') {
 			if (twinBcrypt.compareSync(req.session.uid + salt + req.connection.remoteAddress + req.headers['user-agent'], req.session.ustr)) {
 				callback(null, {
@@ -43,7 +53,6 @@ function Authentication() {
 					if (result && twinBcrypt.compareSync(req.body.password, result.password)) {
 						req.session.uid = result._id;
 						req.session.ustr = twinBcrypt.hashSync(result._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
-						req.params.splice(pos, 1);
 						res.writeHead(302, {
 							'Location': '/' + req.params.join('/')
 						});
@@ -132,12 +141,9 @@ Authentication.prototype.parse = function(opt, callback) {
 			locals = merge({
 				language: data
 			}, opt),
-			body = fn(locals);
+			html = fn(locals);
 
-		callback(null, {
-			status: 200,
-			body: body
-		});
+		callback(null, html);
 	});
 }
 

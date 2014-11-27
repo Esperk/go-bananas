@@ -9,7 +9,7 @@
 
 function Dashboard() {
 	return function(req, res, callback) {
-		callback();
+		callback(null, 'Logged in');
 	}
 }
 
