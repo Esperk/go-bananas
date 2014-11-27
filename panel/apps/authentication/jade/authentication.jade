@@ -18,23 +18,31 @@ block page
 						span #{language.field.error.general}
 			if page != 'sign_in'
 				div.field
-					input(type='text', name='email', placeholder='#{language.field.email.label}', required, value='ferry@famkob.us')
+					span.field-addon 
+						i.fa.fa-envelope.fa-fw
+					input(type='text', name='email', placeholder='#{language.field.email.label}', required)
 			if page == 'sign_in' || page == 'signup'
 				div.field
-					input(type='text', name='username', placeholder='#{language.field.username.label}', required, value='test')
+					span.field-addon 
+						i.fa.fa-user.fa-fw
+					input(type='text', name='username', placeholder='#{language.field.username.label}', required)
 				div.field
-					input(type='password', name='password', placeholder='#{language.field.password.label}', required, value='test')
+					span.field-addon 
+						i.fa.fa-lock.fa-fw
+					input(type='password', name='password', placeholder='#{language.field.password.label}', required)
 			if page == 'signup'
 				div.field
-					input(type='password', name='confirm_password', placeholder='#{language.field.confirm.label}', required, value='test')
+					span.field-addon 
+						i.fa.fa-lock.fa-fw
+					input(type='password', name='confirm_password', placeholder='#{language.field.confirm.label}', required)
 			div.submit
 				input(type='submit', value='#{language.button[page].label}')
+			if page != 'sign_in'
+				div.links
+					a(href='/panel/') #{language.links.sign_in.label}
 			if page != 'signup'
 				div.links
 					a(href='/panel/signup') #{language.links.signup.label}
 			if page != 'recovery'
 				div.links
 					a(href='/panel/recovery') #{language.links.recovery.label}
-			if page != 'sign_in'
-				div.links
-					a(href='/panel/') #{language.links.sign_in.label}

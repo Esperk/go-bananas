@@ -1,0 +1,79 @@
+/**
+ * Go Bananas
+ *
+ * Elements css
+ */
+
+@import "compass";
+@import "mixins";
+
+/**
+ * FORM Elements
+ */
+form {
+	padding: 1.3em;
+	margin: 0 1em;
+	@include boxed(#f0c440);
+
+	div.field {
+		margin-bottom: 1em;
+		display: table;
+		width: 100%;
+		
+		span.field-addon {
+			display: table-cell;
+			width: 1%;
+			padding: 0 0.5em;
+			vertical-align: middle;
+			color: shade(#e9e9e9, 25%);
+			@include boxed(#e9e9e9, tint(#e9e9e9, 50%), (right 0px 0px));
+
+			i {
+				margin-top: 1px;
+			}
+
+			& + input {
+				display: table-cell;
+				@include boxed(#e9e9e9, #ffffff, (left 1px 0px));
+			}
+		}
+
+		input {
+			border: 0px;
+			width: 100%;
+			height: 3em;
+			padding-left: 1em;
+			@include boxed(#e9e9e9);
+		}
+
+		&.required {
+			$color: #fda0a0;
+			span.field-addon {
+				color: shade($color, 5%);
+				@include boxed($color, tint($color, 50%), (right 0px 0px));
+
+				& + input {
+					@include boxed($color, #ffffff, (left 1px 0px));
+				}
+			}
+			input {
+				@include boxed($color);
+			}
+		}
+
+		&.error {
+			padding-left: 1em;
+			font-size: 0.7em;
+			font-weight: bold;
+			color: #ff2727;
+		}
+	}
+
+	div.submit {
+		text-align: center;
+		
+		input[type="submit"] {
+			@include button(#453519);
+		}
+	}
+}

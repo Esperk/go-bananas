@@ -10,11 +10,11 @@ function validateForm(form) {
 
 	for (var i=0,l=required.length;i<l;i++) {
 		var item = required[i];
-		if(item.value === '' && !item.classList.contains('.required')) {
-			item.classList.add('required');
+		if(item.value === '' && !item.parentNode.classList.contains('.required')) {
+			item.parentNode.classList.add('required');
 			errors++;
 		} else {
-			item.classList.remove('required');
+			item.parentNode.classList.remove('required');
 		}
 	}
 	if (errors === 0) {

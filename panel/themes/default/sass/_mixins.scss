@@ -5,22 +5,59 @@
  */
 @import "compass";
 
-@mixin boxed($base-color) {
-	border: 1px solid $base-color;
-	@include border-radius(0.25em);
-	@include box-shadow(shade($base-color, 5%) 0px 1px 0px);
+@mixin boxed($border, $background: #ffffff, $sides: false) {
+	$shade: 5% !default;
+	@if $border == $background {
+		$shade: 75%;
+	}
+
+	background-color: $background;
+	border: {
+		width: 1px;
+		style: solid;
+		color: $border;
+	}
+	@include border-radius(3px);
+	@include box-shadow(shade($border, $shade) 0px 1px 0px);
 	@include box-sizing(border-box);
+
+	@if type-of($sides) == "list" {
+		@if type-of(nth($sides, 1)) == "string" {
+			@include boxedBorder($sides, $border);
+		} @else {
+			@each $side in $sides {
+				@include boxedBorder($side, $border);
+			}
+		}
+	}
+}
+
+@mixin boxedBorder($side, $border) {
+	@if nth($side, 2) == 0px {
+		border-#{nth($side, 1)}: 0px none;
+	} @else {
+		border-#{nth($side, 1)}: #{nth($side, 2)} solid $border;
+	}
+	@if length($side) == 3 {
+		@include border-corner-radius(top, #{nth($side, 1)}, #{nth($side, 3)});
+		@include border-corner-radius(bottom, #{nth($side, 1)}, #{nth($side, 3)});
+	}
+}
+
+@mixin clear() {
+	&:after {
+		display: table;
+		content: " ";
+		clear: both;
+	}
 }
 
 @mixin button($base-color, $inverted:false) {
-	border: 0px;
-	background-color: $base-color;
 	height: 3em;
 	cursor: pointer;
 	@if $inverted {
 		color: #000000;
-	}
-	@else {
+	} @else {
 		color: #ffffff;
 	}
 	font-weight: bold;
@@ -28,9 +65,9 @@
 	margin-bottom: 1em;
 	@if $inverted {
 		@include text-shadow(rgba(#ffffff, 0.5) 1px 1px 0);
-	}
-	@else {
+	} @else {
 		@include text-shadow(rgba(#000000, 0.5) 1px 1px 0);
 	}
-	@include border-radius(0.25em);
+	@include boxed($base-color, $base-color);
 }
+
