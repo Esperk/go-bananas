@@ -7,6 +7,7 @@
 @import "compass";
 @import "compass/reset";
 @import "susy";
+@import "colors";
 
 *:focus { 
 	outline: 0 !important; 
@@ -14,16 +15,18 @@
 }
 
 html {
+	$default_color: #f0c440;
+
 	height: 100%;
 	font-family: "arial";
 	font-size: 1em;
-	background: #ebe5d3;
 
 	body {
+		background: tint($default_color, 90%);
 		@include container(80em);
 
 		a {
-			color: #ebb000;
+			color: shade($default_color, 5%);
 			text-decoration: none;
 			font-size: 0.7em;
 

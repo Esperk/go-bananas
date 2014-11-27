@@ -45,7 +45,7 @@ form div.field {
   display: table;
   width: 100%;
 }
-/* line 23, ../sass/_elements.scss */
+/* line 24, ../sass/_elements.scss */
 form div.field span.field-addon {
   display: table-cell;
   width: 1%;
@@ -73,11 +73,11 @@ form div.field span.field-addon {
   -webkit-border-bottom-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 31, ../sass/_elements.scss */
+/* line 32, ../sass/_elements.scss */
 form div.field span.field-addon i {
   margin-top: 1px;
 }
-/* line 35, ../sass/_elements.scss */
+/* line 36, ../sass/_elements.scss */
 form div.field span.field-addon + input {
   display: table-cell;
   background-color: #ffffff;
@@ -101,7 +101,7 @@ form div.field span.field-addon + input {
   -webkit-border-bottom-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
-/* line 41, ../sass/_elements.scss */
+/* line 42, ../sass/_elements.scss */
 form div.field input {
   border: 0px;
   width: 100%;
@@ -121,7 +121,7 @@ form div.field input {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 51, ../sass/_elements.scss */
+/* line 52, ../sass/_elements.scss */
 form div.field.required span.field-addon {
   color: #f09898;
   background-color: #fecfcf;
@@ -145,7 +145,7 @@ form div.field.required span.field-addon {
   -webkit-border-bottom-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 55, ../sass/_elements.scss */
+/* line 56, ../sass/_elements.scss */
 form div.field.required span.field-addon + input {
   background-color: #ffffff;
   border-width: 1px;
@@ -168,7 +168,7 @@ form div.field.required span.field-addon + input {
   -webkit-border-bottom-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
-/* line 59, ../sass/_elements.scss */
+/* line 60, ../sass/_elements.scss */
 form div.field.required input {
   background-color: #ffffff;
   border-width: 1px;
@@ -184,18 +184,18 @@ form div.field.required input {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 64, ../sass/_elements.scss */
+/* line 65, ../sass/_elements.scss */
 form div.field.error {
   padding-left: 1em;
   font-size: 0.7em;
   font-weight: bold;
   color: #ff2727;
 }
-/* line 72, ../sass/_elements.scss */
+/* line 73, ../sass/_elements.scss */
 form div.submit {
   text-align: center;
 }
-/* line 75, ../sass/_elements.scss */
+/* line 76, ../sass/_elements.scss */
 form div.submit input[type="submit"] {
   height: 3em;
   cursor: pointer;

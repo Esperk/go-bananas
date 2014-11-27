@@ -1,0 +1,35 @@
+/*
+ * Go Bananas
+ *
+ * Color scss
+ */
+
+@import "mixins";
+
+$colors:
+	"bananas" #f0c440 #453519,
+	"awesome-green" #9dd41a #453519
+;
+
+html {
+	body {
+		@each $color in $colors {
+			@if length($color) == 3 {
+				&.#{nth($color, 1)} {
+					background: tint(nth($color, 2), 90%) !important;
+					a {
+						color: shade(nth($color, 2), 5%) !important;
+					}
+					form {
+						@include boxed(nth($color, 2));
+						div.submit {
+							input[type="submit"] {
+								@include button(nth($color, 3));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

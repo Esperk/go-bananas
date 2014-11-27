@@ -68,21 +68,126 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 11, ../sass/theme.scss */
+/*
+ * Go Bananas
+ *
+ * Color scss
+ */
+/*
+ * Go Bananas
+ *
+ * Mixins scss
+ */
+/* line 18, ../sass/_colors.scss */
+html body.bananas {
+  background: #fdf9eb !important;
+}
+/* line 20, ../sass/_colors.scss */
+html body.bananas a {
+  color: #e4ba3c !important;
+}
+/* line 23, ../sass/_colors.scss */
+html body.bananas form {
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #f0c440;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: #e4ba3c 0px 1px 0px;
+  -webkit-box-shadow: #e4ba3c 0px 1px 0px;
+  box-shadow: #e4ba3c 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 26, ../sass/_colors.scss */
+html body.bananas form div.submit input[type="submit"] {
+  height: 3em;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0 2em;
+  margin-bottom: 1em;
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
+  background-color: #453519;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #453519;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: #110d06 0px 1px 0px;
+  -webkit-box-shadow: #110d06 0px 1px 0px;
+  box-shadow: #110d06 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 18, ../sass/_colors.scss */
+html body.awesome-green {
+  background: #f5fae8 !important;
+}
+/* line 20, ../sass/_colors.scss */
+html body.awesome-green a {
+  color: #95c918 !important;
+}
+/* line 23, ../sass/_colors.scss */
+html body.awesome-green form {
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #9dd41a;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: #95c918 0px 1px 0px;
+  -webkit-box-shadow: #95c918 0px 1px 0px;
+  box-shadow: #95c918 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 26, ../sass/_colors.scss */
+html body.awesome-green form div.submit input[type="submit"] {
+  height: 3em;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0 2em;
+  margin-bottom: 1em;
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
+  background-color: #453519;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #453519;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: #110d06 0px 1px 0px;
+  -webkit-box-shadow: #110d06 0px 1px 0px;
+  box-shadow: #110d06 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 12, ../sass/theme.scss */
 *:focus {
   outline: 0 !important;
   outline: none !important;
 }
 
-/* line 16, ../sass/theme.scss */
+/* line 17, ../sass/theme.scss */
 html {
   height: 100%;
   font-family: "arial";
   font-size: 1em;
-  background: #ebe5d3;
 }
-/* line 22, ../sass/theme.scss */
+/* line 24, ../sass/theme.scss */
 html body {
+  background: #fdf9eb;
   max-width: 80em;
   margin-left: auto;
   margin-right: auto;
@@ -93,13 +198,13 @@ html body:after {
   display: block;
   clear: both;
 }
-/* line 25, ../sass/theme.scss */
+/* line 28, ../sass/theme.scss */
 html body a {
-  color: #ebb000;
+  color: #e4ba3c;
   text-decoration: none;
   font-size: 0.7em;
 }
-/* line 30, ../sass/theme.scss */
+/* line 33, ../sass/theme.scss */
 html body a:hover {
   text-decoration: underline;
 }
