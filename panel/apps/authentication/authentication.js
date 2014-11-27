@@ -13,7 +13,8 @@ var jade = require('jade'),
 	twinBcrypt = require('twin-bcrypt'),
 	crypto = require('crypto'),
 	jade_options = {
-		basedir: __root + 'panel/themes/default/'
+		basedir: __root + 'panel/themes/default/',
+		pretty: true
 	},
 	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
 

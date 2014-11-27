@@ -1,6 +1,9 @@
-include /jade/head.jade
-link(rel='stylesheet', href='/panel/themes/default/css/authentication.css')
-body
+extends /jade/theme
+
+block head
+	link(rel='stylesheet', href='/panel/themes/default/css/authentication.css')
+
+block page
 	div.login
 		figure
 			img.logo(src='/panel/themes/default/images/go-bananas-logo.png')
