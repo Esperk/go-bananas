@@ -1,0 +1,8 @@
+{
+	"name": "go-bananas",
+	"version": "0.0.1",
+	"dependencies": {
+		"jquery": "~2.1.1",
+		"fontawesome": "~4.2.0"
+	}
+}
