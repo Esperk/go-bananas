@@ -6,12 +6,19 @@
 
 "use strict";
 
+var languages = require(__lib + 'languages'),
+	jade = require('jade');
 
 function Dashboard() {
 	return function(req, res, callback) {
-		callback(null, 'Logged in');
+
+		languages.getTranslation('dashboard', function(data) {
+			var fn = jade.compileFile(__dirname + '/jade/dashboard.jade', __jade),
+				html = fn({language: data});
+
+			callback(null, html);
+		});
 	}
 }
-
 
 module.exports = exports = Dashboard;

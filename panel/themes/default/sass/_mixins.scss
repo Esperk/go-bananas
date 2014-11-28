@@ -11,7 +11,7 @@
 		$shade: 75%;
 	}
 
-	background-color: $background;
+	background-color: $background !important;
 	border: {
 		width: 1px;
 		style: solid;

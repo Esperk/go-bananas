@@ -1,2 +1,11 @@
-include /jade/head.jade
-body Welcome!
+doctype html
+html
+	include /jade/head
+		block head
+			
+	body
+		h1 You're logged in! Whoop!!
+
+		a(href='/panel/logout') Uitloggen
+
+		include /jade/foot

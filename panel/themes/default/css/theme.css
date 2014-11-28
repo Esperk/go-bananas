@@ -88,7 +88,7 @@ html body.bananas a {
 }
 /* line 23, ../sass/_colors.scss */
 html body.bananas form {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #f0c440;
@@ -111,7 +111,7 @@ html body.bananas form div.submit input[type="submit"] {
   padding: 0 2em;
   margin-bottom: 1em;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
-  background-color: #453519;
+  background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;
@@ -135,7 +135,7 @@ html body.awesome-green a {
 }
 /* line 23, ../sass/_colors.scss */
 html body.awesome-green form {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #9dd41a;
@@ -158,7 +158,7 @@ html body.awesome-green form div.submit input[type="submit"] {
   padding: 0 2em;
   margin-bottom: 1em;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
-  background-color: #453519;
+  background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;

@@ -11,20 +11,15 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		uglify: {
 			bananas: {
-				files: {
-					'panel/themes/default/js/script.js': ['panel/themes/default/js/dev/*.js'],
-					'public/themes/*/js/script.js': ['public/themes/*/js/dev/*.js']
-				}
-			},
-			bower: {
 				options: {
 					mangle: true,
 					compress: true
 				},
 				files: {
-					'public/assets/bower.min.js': 'public/assets/_bower.js'
+					'panel/themes/default/js/script.min.js': ['panel/themes/*/js/dev/*.js', 'public/assets/js/*.js'],
+					'public/themes/*/js/script.min.js': ['public/themes/*/js/dev/*.js', 'public/assets/js/*.js']
 				}
-			}
+			},
 		},
 		compass: {
 			dev: {
@@ -36,7 +31,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			scripts: {
-				files: ['panel/themes/*/js/dev/*.js', 'public/themes/*/js/dev/*.js'], 
+				files: ['panel/themes/*/js/dev/*.js', 'public/themes/*/js/dev/*.js', 'public/assets/js/*.js'], 
 				tasks: ['uglify:bananas']
 			},
 			sass: {

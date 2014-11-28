@@ -25,7 +25,7 @@
 form {
   padding: 1.3em;
   margin: 0 1em;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #f0c440;
@@ -52,7 +52,7 @@ form div.field span.field-addon {
   padding: 0 0.5em;
   vertical-align: middle;
   color: #aeaeae;
-  background-color: #f4f4f4;
+  background-color: #f4f4f4 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
@@ -80,7 +80,7 @@ form div.field span.field-addon i {
 /* line 36, ../sass/_elements.scss */
 form div.field span.field-addon + input {
   display: table-cell;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
@@ -107,7 +107,7 @@ form div.field input {
   width: 100%;
   height: 3em;
   padding-left: 1em;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
@@ -124,7 +124,7 @@ form div.field input {
 /* line 52, ../sass/_elements.scss */
 form div.field.required span.field-addon {
   color: #f09898;
-  background-color: #fecfcf;
+  background-color: #fecfcf !important;
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
@@ -147,7 +147,7 @@ form div.field.required span.field-addon {
 }
 /* line 56, ../sass/_elements.scss */
 form div.field.required span.field-addon + input {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
@@ -170,7 +170,7 @@ form div.field.required span.field-addon + input {
 }
 /* line 60, ../sass/_elements.scss */
 form div.field.required input {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
@@ -204,7 +204,7 @@ form div.submit input[type="submit"] {
   padding: 0 2em;
   margin-bottom: 1em;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
-  background-color: #453519;
+  background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;

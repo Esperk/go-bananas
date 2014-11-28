@@ -12,10 +12,6 @@ var jade = require('jade'),
 	User = require(__models + 'user'),
 	twinBcrypt = require('twin-bcrypt'),
 	crypto = require('crypto'),
-	jade_options = {
-		basedir: __root + 'panel/themes/default/',
-		pretty: true
-	},
 	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
 
 function Authentication() {
@@ -138,7 +134,7 @@ function Authentication() {
 
 Authentication.prototype.parse = function(opt, callback) {
 	languages.getTranslation('authentication', function(data) {
-		var fn = jade.compileFile(__dirname + '/jade/authentication.jade', jade_options),
+		var fn = jade.compileFile(__dirname + '/jade/authentication.jade', __jade),
 			locals = merge({
 				language: data
 			}, opt),
