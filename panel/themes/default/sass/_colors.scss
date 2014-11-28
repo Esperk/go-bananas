@@ -17,17 +17,10 @@ html {
 			@if length($color) == 3 {
 				&.#{nth($color, 1)} {
 					background: tint(nth($color, 2), 90%) !important;
-					a {
-						color: shade(nth($color, 2), 5%) !important;
-					}
-					form {
-						@include boxed(nth($color, 2));
-						div.submit {
-							input[type="submit"] {
-								@include button(nth($color, 3));
-							}
-						}
-					}
+					a { color: shade(nth($color, 2), 5%) !important; }
+					form { @include boxed(nth($color, 2)); }
+					form div.submit input[type="submit"] { @include button(nth($color, 3)); }
+				
 				}
 			}
 		}

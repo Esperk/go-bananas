@@ -7,6 +7,7 @@
 "use strict";
 
 var jade = require('jade'),
+	assert = require('assert'),
 	languages = require(__lib + 'languages'),
 	merge = require('utils-merge'),
 	User = require(__models + 'user'),
@@ -21,7 +22,7 @@ function Authentication() {
 		var pages = ['signup', 'recovery'];
 
 		// logout, no need to parse the rest
-		if (typeof req.params[1] !== 'undefined' && req.params[1] === 'logout') {
+		if (typeof req.routes[1] !== 'undefined' && req.routes[1] === 'logout') {
 			req.session = null;
 			res.writeHead(302, {
 				'Location': '/panel/'
@@ -40,8 +41,80 @@ function Authentication() {
 		}
 
 		// handle post
-		if (req.method === 'POST' && typeof req.params !== 'undefined' && ((typeof req.params[1] !== 'undefined' && ~pages.indexOf(req.params[1])) || typeof req.params[1] === 'undefined')) {
-			if(typeof req.params[1] === 'undefined') {
+		if (req.method === 'POST') {
+			if(typeof req.routes[1] !== 'undefined' && ~pages.indexOf(req.routes[1])) {
+				if(req.routes[1] === 'signup') {
+					/*
+					// validation
+					req.assert('username', 'required').notEmpty().gte(5);
+					req.assert('email', 'valid email required').notEmpty().isEmail();
+					req.assert('password', '6 to 20 characters required').len(6, 20);
+					req.assert('confirm_password', '6 to 20 characters required').len(6, 20);
+					var errors = req.validationErrors(true);
+					if (errors) {
+						console.log(errors);
+					}
+					if(req.body.password !== req.body.confirm_password) {
+
+					}
+					*/
+					// signup
+					var hash = twinBcrypt.hashSync(req.body.password),
+						secret = crypto.randomBytes(256);
+					User.findOne({name: req.body.username}, function(err, result) {
+						if (err) {
+							throw new Error(err);
+						}
+						if (result) {
+							self.parse({
+								page: 'signup',
+								error: {
+									username: true
+								}
+							}, callback);
+						} else {
+
+							var user = new User({
+								name: req.body.username,
+								password: hash,
+								email: req.body.email,
+								active: true,
+								last_ip: req.connection.remoteAddress,
+								secret: secret
+							});
+							user.save(function(err, data) {
+								if (err) throw new Error(err);
+
+								req.session.uid = data._id;
+								req.session.ustr = twinBcrypt.hashSync(data._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
+							
+								var pos = req.routes.indexOf(req.routes[1]);
+								if (~pos) {
+									req.routes.splice(pos, 1);
+									res.writeHead(302, {
+										'Location': '/' + req.routes.join('/')
+									});
+									res.end();
+									return;
+								} else {
+									callback();
+								}
+							});
+						}
+					});
+				} else if(req.routes[1] === 'recovery') {
+					// recover password
+					callback();
+				}
+			} else {
+				// validation
+				req.checkBody('username', 'required').notEmpty();
+				req.checkBody('password', '6 to 20 characters required').len(6, 20);
+				var errors = req.validationErrors(true);
+				if (errors) {
+					console.log(errors);
+				}
+				
 				// login
 				User.findOne({name: req.body.username}, function(err, result) {
 					if (err) {
@@ -51,7 +124,7 @@ function Authentication() {
 						req.session.uid = result._id;
 						req.session.ustr = twinBcrypt.hashSync(result._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
 						res.writeHead(302, {
-							'Location': '/' + req.params.join('/')
+							'Location': '/' + req.routes.join('/')
 						});
 						res.end();
 						return;
@@ -64,71 +137,19 @@ function Authentication() {
 						}, callback);
 					}
 				});
-			} else if(req.params[1] === 'signup') {
-				// signup
-				var hash = twinBcrypt.hashSync(req.body.password),
-					secret = crypto.randomBytes(256);
-				User.findOne({name: req.body.username}, function(err, result) {
-					if (err) {
-						throw new Error(err);
-					}
-					if (result) {
-						self.parse({
-							page: 'signup',
-							error: {
-								username: true
-							}
-						}, callback);
-					} else {
-						var user = new User({
-							name: req.body.username,
-							password: hash,
-							email: req.body.email,
-							active: true,
-							last_ip: req.connection.remoteAddress,
-							secret: secret
-						});
-						user.save(function(err, data) {
-							if (err) throw new Error(err);
-
-							req.session.uid = data._id;
-							req.session.ustr = twinBcrypt.hashSync(data._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
-						
-							var pos = req.params.indexOf(req.params[1]);
-							if (~pos) {
-								req.params.splice(pos, 1);
-								res.writeHead(302, {
-									'Location': '/' + req.params.join('/')
-								});
-								res.end();
-								return;
-							} else {
-								callback();
-							}
-						});
-					}
-				});
-			} else if(req.params[1] === 'recovery') {
-				// recover password
-				callback();
 			}
 		// load normal pages
-		} else if (typeof req.params !== 'undefined') {
+		} else  {
 			var page = '';
-			if(typeof req.params[1] !== 'undefined' && ~pages.indexOf(req.params[1])) {
-				page = req.params[1];
-			} else if(typeof req.params[1] === 'undefined') {
-				page = 'sign_in';
+			if(typeof req.routes[1] !== 'undefined' && ~pages.indexOf(req.routes[1])) {
+				page = req.routes[1];
 			} else {
-				callback();
-				return;
+				page = 'sign_in';
 			}
 			self.parse({
 				page: page
 			}, callback);
-		} else {
-			callback();
-		}
+		} 
 	}
 }
 

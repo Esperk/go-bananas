@@ -20,7 +20,9 @@ var connect = require('connect'),
 	Bananas = require('./lib/bananas'),
 	Routes = require('./lib/routes'),
 	cookies = require('cookies'),
-	serveStatic = require('serve-static'),
+	serve = require('serve-static'),
+	bodyParser = require('body-parser'),
+	validator = require('express-validator'),
 	session = require('cookie-session');
 
 module.exports = exports = function(opt) {
@@ -29,9 +31,6 @@ module.exports = exports = function(opt) {
 	// setup the app
 	var app = new Bananas(options);
 	
-	// serve static files
-	var serve = serveStatic("./", {maxAge: 3600000});
-
 	// routes
 	var routes = new Routes(options);
 
@@ -43,12 +42,20 @@ module.exports = exports = function(opt) {
 		}))
 		// cookies
 		.use(cookies())
+		// body parser
+		.use(bodyParser.urlencoded({
+			extended: true
+		}))
+		// validator
+		.use(validator())
+		// static files
+		.use(serve("./", {
+			maxAge: 3600000
+		}))
 		// routes
 		.use(routes)
 		// bananas
-		.use(app)
-		// static files
-		.use(serve);
+		.use(app);
 
 	// return 
 	return server;
