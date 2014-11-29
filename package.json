@@ -1,7 +1,7 @@
 {
   "name": "go-bananas",
   "version": "0.0.1",
-  "description": "Go Bananas",
+  "description": "Go Bananas - a no nonsense Node.js framework - automation is key",
   "engines": {
     "node": ">=0.10.33"
   },
