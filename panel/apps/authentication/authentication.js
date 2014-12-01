@@ -113,7 +113,6 @@ Authentication.prototype.login = function(req, res, callback) {
 		function(err) {
 			if (err) {
 				if (typeof err === 'object') {
-					console.log('HIER');
 					self.renderPage('sign_in', err, req, res, callback);
 				} else {
 					callback(err);
@@ -142,7 +141,6 @@ Authentication.prototype.signup = function(req, res, callback) {
 	if(req.method === 'POST') {
 		console.log('HANDLE POST');
 	}
-	console.log('render signup page');
 	this.renderPage('signup', errors, req, res, callback);
 };
 
@@ -161,7 +159,6 @@ Authentication.prototype.recover = function(req, res, callback) {
 	if(req.method === 'POST') {
 		console.log('HANDLE POST');
 	}
-	console.log('render recover page');
 	this.renderPage('recovery', errors, req, res, callback);
 };
 
@@ -176,7 +173,6 @@ Authentication.prototype.recover = function(req, res, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.renderPage = function(page, errors, req, res, callback) {
-	console.log(errors);
 	parser.parse(__theme + 'apps/authentication/jade/authentication.jade', 'authentication', {
 		page: page,
 		errors: errors

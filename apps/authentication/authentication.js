@@ -169,7 +169,6 @@ Authentication.prototype.checkPost = function(req, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.validatePassword = function(user, password, callback) {
-	console.log(user);
 	twinBcrypt.compare(password, user.password, function(equal) {
 		if (equal) {
 			callback();
