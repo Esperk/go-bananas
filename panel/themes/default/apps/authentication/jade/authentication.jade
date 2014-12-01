@@ -7,15 +7,10 @@ html
 		div.login
 			figure
 				img.logo(src='/panel/themes/default/images/go-bananas-logo.png', width='600', height='228')
-			form(method='POST', onsubmit='return validateForm(this);', novalidate)
-				if error
+			form#authentication.validate(method='POST', novalidate)
+				each error in errors
 					div.field.error
-						if error.username
-							span #{language.field.error.username}
-						else if error.combination
-							span #{language.field.error.combination}
-						else 
-							span #{language.field.error.general}
+						span #{error.msg}
 				if page != 'sign_in'
 					div.field
 						span.field-addon 

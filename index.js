@@ -10,10 +10,6 @@
 global.__root = __dirname + '/';
 global.__lib = __dirname + '/lib/';
 global.__models = __dirname + '/models/';
-global.__jade = {
-	basedir: __dirname + '/panel/themes/default/',
-	pretty: true
-};
 
 // modules
 var connect = require('connect'),
@@ -43,6 +39,7 @@ module.exports = exports = function(opt) {
 		// cookies
 		.use(cookies())
 		// body parser
+		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({
 			extended: true
 		}))

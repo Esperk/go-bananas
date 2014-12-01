@@ -1,1 +1,0 @@
-function validateForm(a){for(var b=a.querySelectorAll("input[required]"),c=0,d=0,e=b.length;e>d;d++){var f=b[d];""!==f.value||f.parentNode.classList.contains(".required")?f.parentNode.classList.remove("required"):(f.parentNode.classList.add("required"),c++)}return 0===c?!0:!1}

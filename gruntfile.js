@@ -40,8 +40,8 @@ module.exports = function(grunt) {
 					compress: true
 				},
 				files: {
-					'panel/themes/default/js/script.min.js': ['panel/themes/*/js/dev/*.js', 'public/assets/js/*.js'],
-					'public/themes/*/js/script.min.js': ['public/themes/*/js/dev/*.js', 'public/assets/js/*.js']
+					'panel/themes/default/js/script.min.js': ['public/assets/js/*.js', 'panel/themes/**/js/dev/*.js', 'panel/themes/default/apps/**/js/*.js'],
+					'public/themes/default/js/script.min.js': ['public/assets/js/*.js', 'public/themes/**/js/dev/*.js']
 				}
 			},
 		},
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			scripts: {
-				files: ['panel/themes/*/js/dev/*.js', 'public/themes/*/js/dev/*.js', 'public/assets/js/*.js'], 
+				files: ['panel/themes/**/js/dev/*.js', 'public/themes/**/js/dev/*.js', 'public/assets/js/*.js', 'panel/themes/**/apps/**/js/*.js'], 
 				tasks: ['uglify:bananas']
 			},
 			sass: {
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 		}
 	});
 	// default task, just run watch for compass and js uglify
-	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('default', ['uglify:bananas', 'compass:dev', 'watch']);
 	grunt.registerTask('bower', ['bower_api:install']);
 	grunt.registerTask('bower_cleanup', ['bower_api:cleanup']);
 };

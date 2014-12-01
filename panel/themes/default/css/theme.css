@@ -92,9 +92,9 @@ html body.bananas form {
   border-width: 1px;
   border-style: solid;
   border-color: #f0c440;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #e4ba3c 0px 1px 0px;
   -webkit-box-shadow: #e4ba3c 0px 1px 0px;
   box-shadow: #e4ba3c 0px 1px 0px;
@@ -104,20 +104,20 @@ html body.bananas form {
 }
 /* line 22, ../sass/_colors.scss */
 html body.bananas form div.submit input[type="submit"] {
-  height: 3em;
+  height: 2.25rem;
   cursor: pointer;
   color: #ffffff;
   font-weight: bold;
-  padding: 0 2em;
-  margin-bottom: 1em;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
   background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #110d06 0px 1px 0px;
   -webkit-box-shadow: #110d06 0px 1px 0px;
   box-shadow: #110d06 0px 1px 0px;
@@ -139,9 +139,9 @@ html body.awesome-green form {
   border-width: 1px;
   border-style: solid;
   border-color: #9dd41a;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #95c918 0px 1px 0px;
   -webkit-box-shadow: #95c918 0px 1px 0px;
   box-shadow: #95c918 0px 1px 0px;
@@ -151,20 +151,20 @@ html body.awesome-green form {
 }
 /* line 22, ../sass/_colors.scss */
 html body.awesome-green form div.submit input[type="submit"] {
-  height: 3em;
+  height: 2.25rem;
   cursor: pointer;
   color: #ffffff;
   font-weight: bold;
-  padding: 0 2em;
-  margin-bottom: 1em;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
   background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #110d06 0px 1px 0px;
   -webkit-box-shadow: #110d06 0px 1px 0px;
   box-shadow: #110d06 0px 1px 0px;

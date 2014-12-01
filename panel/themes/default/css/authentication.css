@@ -29,9 +29,9 @@ form {
   border-width: 1px;
   border-style: solid;
   border-color: #f0c440;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #e4ba3c 0px 1px 0px;
   -webkit-box-shadow: #e4ba3c 0px 1px 0px;
   box-shadow: #e4ba3c 0px 1px 0px;
@@ -56,9 +56,9 @@ form div.field span.field-addon {
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #dddddd 0px 1px 0px;
   -webkit-box-shadow: #dddddd 0px 1px 0px;
   box-shadow: #dddddd 0px 1px 0px;
@@ -84,9 +84,9 @@ form div.field span.field-addon + input {
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #dddddd 0px 1px 0px;
   -webkit-box-shadow: #dddddd 0px 1px 0px;
   box-shadow: #dddddd 0px 1px 0px;
@@ -105,15 +105,15 @@ form div.field span.field-addon + input {
 form div.field input {
   border: 0px;
   width: 100%;
-  height: 2.5rem;
+  height: 2.25rem;
   padding-left: 1rem;
   background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
   border-color: #e9e9e9;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #dddddd 0px 1px 0px;
   -webkit-box-shadow: #dddddd 0px 1px 0px;
   box-shadow: #dddddd 0px 1px 0px;
@@ -128,9 +128,9 @@ form div.field.required span.field-addon {
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #f09898 0px 1px 0px;
   -webkit-box-shadow: #f09898 0px 1px 0px;
   box-shadow: #f09898 0px 1px 0px;
@@ -151,9 +151,9 @@ form div.field.required span.field-addon + input {
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #f09898 0px 1px 0px;
   -webkit-box-shadow: #f09898 0px 1px 0px;
   box-shadow: #f09898 0px 1px 0px;
@@ -174,9 +174,9 @@ form div.field.required input {
   border-width: 1px;
   border-style: solid;
   border-color: #fda0a0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #f09898 0px 1px 0px;
   -webkit-box-shadow: #f09898 0px 1px 0px;
   box-shadow: #f09898 0px 1px 0px;
@@ -197,20 +197,20 @@ form div.submit {
 }
 /* line 76, ../sass/_elements.scss */
 form div.submit input[type="submit"] {
-  height: 3em;
+  height: 2.25rem;
   cursor: pointer;
   color: #ffffff;
   font-weight: bold;
-  padding: 0 2em;
-  margin-bottom: 1em;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0;
   background-color: #453519 !important;
   border-width: 1px;
   border-style: solid;
   border-color: #453519;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
   -moz-box-shadow: #110d06 0px 1px 0px;
   -webkit-box-shadow: #110d06 0px 1px 0px;
   box-shadow: #110d06 0px 1px 0px;

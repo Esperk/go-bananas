@@ -11,8 +11,16 @@
 var bananas = require('./index.js'),
 	http = require('http'),
 	options = {
-		"mode": "dev",
-		"language": "nl"
+		mode: 'dev',
+		language: 'nl',
+		jade: {
+			use: true,
+			pretty: true
+		},
+		panel: {
+			theme: 'default'
+		},
+		theme: 'default'
 	};
 
 http.createServer(bananas(options)).listen(1337);

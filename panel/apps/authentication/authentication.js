@@ -1,168 +1,191 @@
-/*
- * Go Bananas
+/**
+ * Authentication application
  *
  * Copyright (c) 2014 Ferry Kobus - Webmonkeys
  */
 
 "use strict";
 
-var jade = require('jade'),
-	assert = require('assert'),
-	languages = require(__lib + 'languages'),
-	merge = require('utils-merge'),
+var __root = global.__root,
+	__lib = global.__lib,
+	__theme = global.__theme,
+	async = require('async'),
+	util = require('util'),
 	User = require(__models + 'user'),
-	twinBcrypt = require('twin-bcrypt'),
-	crypto = require('crypto'),
-	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
+	parser = require(__lib + 'parser'),
+	authApp = require(__root + 'apps/authentication/authentication');
 
-function Authentication() {
-	var self = this;
+/**
+ * extend functions from apps/authentication
+ * we do this to prevent duplicate code
+ * and reusable code in the frontend ;)
+ */
+util.inherits(Authentication, authApp);
+
+/**
+ * Represents the authentication app
+ * @constructor
+ * @param {int} dpt - Depth to look for endpoints for authentication pages
+ */
+function Authentication(dpt) {
+	var self = this,
+		depth = dpt || 1;
 
 	return function(req, res, callback) {
-		var pages = ['signup', 'recovery'];
-
-		// logout, no need to parse the rest
-		if (typeof req.routes[1] !== 'undefined' && req.routes[1] === 'logout') {
-			req.session = null;
-			res.writeHead(302, {
-				'Location': '/panel/'
+		// reroute logout?
+		if (self.routes.logout === req.routes[depth]) {
+			self.request(depth, req, res, callback);
+		} else {
+			self.loggedIn(req, function(loggedIn) {
+				if (loggedIn) {
+					callback(null, true);
+				} else {
+					self.request(depth, req, res, callback);
+				}
 			});
-			res.end();
-			return;
 		}
-
-		if (typeof req.session.uid !== 'undefined' && req.session.ustr !== 'undefined') {
-			if (twinBcrypt.compareSync(req.session.uid + salt + req.connection.remoteAddress + req.headers['user-agent'], req.session.ustr)) {
-				callback(null, {
-					loggedIn: true
-				});
-				return;
-			}
-		}
-
-		// handle post
-		if (req.method === 'POST') {
-			if(typeof req.routes[1] !== 'undefined' && ~pages.indexOf(req.routes[1])) {
-				if(req.routes[1] === 'signup') {
-					/*
-					// validation
-					req.assert('username', 'required').notEmpty().gte(5);
-					req.assert('email', 'valid email required').notEmpty().isEmail();
-					req.assert('password', '6 to 20 characters required').len(6, 20);
-					req.assert('confirm_password', '6 to 20 characters required').len(6, 20);
-					var errors = req.validationErrors(true);
-					if (errors) {
-						console.log(errors);
-					}
-					if(req.body.password !== req.body.confirm_password) {
-
-					}
-					*/
-					// signup
-					var hash = twinBcrypt.hashSync(req.body.password),
-						secret = crypto.randomBytes(256);
-					User.findOne({name: req.body.username}, function(err, result) {
-						if (err) {
-							throw new Error(err);
-						}
-						if (result) {
-							self.parse({
-								page: 'signup',
-								error: {
-									username: true
-								}
-							}, callback);
-						} else {
-
-							var user = new User({
-								name: req.body.username,
-								password: hash,
-								email: req.body.email,
-								active: true,
-								last_ip: req.connection.remoteAddress,
-								secret: secret
-							});
-							user.save(function(err, data) {
-								if (err) throw new Error(err);
-
-								req.session.uid = data._id;
-								req.session.ustr = twinBcrypt.hashSync(data._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
-							
-								var pos = req.routes.indexOf(req.routes[1]);
-								if (~pos) {
-									req.routes.splice(pos, 1);
-									res.writeHead(302, {
-										'Location': '/' + req.routes.join('/')
-									});
-									res.end();
-									return;
-								} else {
-									callback();
-								}
-							});
-						}
-					});
-				} else if(req.routes[1] === 'recovery') {
-					// recover password
-					callback();
-				}
-			} else {
-				// validation
-				req.checkBody('username', 'required').notEmpty();
-				req.checkBody('password', '6 to 20 characters required').len(6, 20);
-				var errors = req.validationErrors(true);
-				if (errors) {
-					console.log(errors);
-				}
-				
-				// login
-				User.findOne({name: req.body.username}, function(err, result) {
-					if (err) {
-						throw new Error(err);
-					}
-					if (result && twinBcrypt.compareSync(req.body.password, result.password)) {
-						req.session.uid = result._id;
-						req.session.ustr = twinBcrypt.hashSync(result._id + salt + req.connection.remoteAddress + req.headers['user-agent']);
-						res.writeHead(302, {
-							'Location': '/' + req.routes.join('/')
-						});
-						res.end();
-						return;
-					} else {
-						self.parse({
-							page: 'sign_in',
-							error: {
-								combination: true
-							}
-						}, callback);
-					}
-				});
-			}
-		// load normal pages
-		} else  {
-			var page = '';
-			if(typeof req.routes[1] !== 'undefined' && ~pages.indexOf(req.routes[1])) {
-				page = req.routes[1];
-			} else {
-				page = 'sign_in';
-			}
-			self.parse({
-				page: page
-			}, callback);
-		} 
 	}
 }
 
-Authentication.prototype.parse = function(opt, callback) {
-	languages.getTranslation('authentication', function(data) {
-		var fn = jade.compileFile(__dirname + '/jade/authentication.jade', __jade),
-			locals = merge({
-				language: data
-			}, opt),
-			html = fn(locals);
 
-		callback(null, html);
+/**
+ * login
+ *
+ * loops through the post data and checks the given input
+ *
+ * @param {object} req
+ * @param {function} callback - The callback function
+ */
+Authentication.prototype.login = function(req, res, callback) {
+	var errors = {},
+		self = this;
+
+	if (req.xhr) {
+		this.parseXhr(req, callback);
+	} else if (req.method === 'POST') {
+		async.waterfall([
+			function(callback) {
+				self.checkPost(req, function(errors) {
+					if (errors) {
+						callback(errors);
+					} else {
+						callback();
+					}
+				});
+			},
+			function(callback) {
+				User.findOne({
+					name: req.body.username
+				}, function(err, result) {
+					if (err) {
+						callback(err);
+					}
+					if (!result) {
+						callback({
+							username: {
+								msg: 'username_404'
+							}
+						});
+					} else {
+						callback(null, result);
+					}
+				});
+			},
+			function(user, callback) {
+				self.validatePassword(user, req.body.password, function(err) {
+					if (err) {
+						callback(err);
+					} else {
+						callback(null, user);
+					}
+				});
+			},
+			function(user, callback) {
+				self.setSession(user, req, function() {
+					res.writeHead(302, {
+						'Location': '/' + req.routes.join('/')
+					});
+					res.end();
+					callback();
+				});
+			}
+		],
+		function(err) {
+			if (err) {
+				if (typeof err === 'object') {
+					console.log('HIER');
+					self.renderPage('sign_in', err, req, res, callback);
+				} else {
+					callback(err);
+				}
+			} else {
+				callback();
+			}
+		});
+	} else {
+		this.renderPage('sign_in', errors, req, res, callback);
+	}
+};
+
+/**
+ * signup
+ *
+ * Generates signup pages
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {function} callback - The callback function
+ */
+Authentication.prototype.signup = function(req, res, callback) {
+	var errors = {};
+
+	if(req.method === 'POST') {
+		console.log('HANDLE POST');
+	}
+	console.log('render signup page');
+	this.renderPage('signup', errors, req, res, callback);
+};
+
+/**
+ * recover
+ *
+ * Generates recover pages
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {function} callback - The callback function
+ */
+Authentication.prototype.recover = function(req, res, callback) {
+	var errors = {};
+
+	if(req.method === 'POST') {
+		console.log('HANDLE POST');
+	}
+	console.log('render recover page');
+	this.renderPage('recovery', errors, req, res, callback);
+};
+
+/**
+ * renderPage
+ *
+ * Function that parses the given template with the given variables
+ * @param {string} page - Which page to parse
+ * @param {object} errors - Object that contains conflicting fields and error messages
+ * @param {object} req
+ * @param {object} res
+ * @param {function} callback - The callback function
+ */
+Authentication.prototype.renderPage = function(page, errors, req, res, callback) {
+	console.log(errors);
+	parser.parse(__theme + 'apps/authentication/jade/authentication.jade', 'authentication', {
+		page: page,
+		errors: errors
+	}, function(err, data) {
+		if (err) {
+			callback(err);
+		}
+		callback(null, data);
 	});
-}
+};
 
 module.exports = exports = Authentication;

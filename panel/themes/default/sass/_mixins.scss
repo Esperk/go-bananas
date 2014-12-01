@@ -17,7 +17,7 @@
 		style: solid;
 		color: $border;
 	}
-	@include border-radius(3px);
+	@include border-radius(0.25rem);
 	@include box-shadow(shade($border, $shade) 0px 1px 0px);
 	@include box-sizing(border-box);
 
@@ -53,7 +53,7 @@
 }
 
 @mixin button($base-color, $inverted:false) {
-	height: 3em;
+	height: 2.25rem;
 	cursor: pointer;
 	@if $inverted {
 		color: #000000;
@@ -61,8 +61,8 @@
 		color: #ffffff;
 	}
 	font-weight: bold;
-	padding: 0 2em;
-	margin-bottom: 1em;
+	padding: 0 2rem;
+	margin-bottom: 1rem;
 	@if $inverted {
 		@include text-shadow(rgba(#ffffff, 0.5) 1px 1px 0);
 	} @else {
