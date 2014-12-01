@@ -11,8 +11,9 @@ var __root = global.__root,
 	__theme = global.__theme,
 	async = require('async'),
 	util = require('util'),
-	User = require(__models + 'user'),
+	users = require(__lib + 'users'),
 	parser = require(__lib + 'parser'),
+	merge = require('utils-merge'),
 	authApp = require(__root + 'apps/authentication/authentication');
 
 /**
@@ -74,20 +75,18 @@ Authentication.prototype.login = function(req, res, callback) {
 				});
 			},
 			function(callback) {
-				User.findOne({
-					name: req.body.username
-				}, function(err, result) {
+				users.findUser(req.body.username, function(err, data) {
 					if (err) {
 						callback(err);
 					}
-					if (!result) {
+					if (!data) {
 						callback({
 							username: {
 								msg: 'username_404'
 							}
 						});
 					} else {
-						callback(null, result);
+						callback(null, data);
 					}
 				});
 			},
@@ -136,12 +135,120 @@ Authentication.prototype.login = function(req, res, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.signup = function(req, res, callback) {
-	var errors = {};
+	var self = this,
+		save = true,
+		user = {};
 
-	if(req.method === 'POST') {
-		console.log('HANDLE POST');
+	if (req.xhr) {
+		this.parseXhr(req, callback);
+	} else if (req.method === 'POST') {
+		async.series([
+			function(callback) {
+				users.findUser(req.body.username, function(err, data) {
+					if (err) {
+						callback(err);
+					}
+					if (data) {
+						save = false;
+						callback(null, {
+							username: {
+								msg: 'username_exists'
+							}
+						});
+					} else {
+						callback();
+					}
+				});
+			},
+			function(callback) {
+				users.findUserByEmail(req.body.email, function(err, data) {
+					if (err) {
+						callback(err);
+					}
+					if (data) {
+						save = false;
+						callback(null, {
+							email: {
+								msg: 'email_exists'
+							}
+						});
+					} else {
+						callback();
+					}
+				});
+			},
+			function(callback) {
+				if (req.body.password !== req.body.confirm_password) {
+					save = false;
+					callback(null, {
+						password: {
+							msg: 'no_match'
+						}
+					});
+				} else {
+					callback();
+				}
+			},
+			function(callback) {
+				if(save) {
+					users.addUser(req.body.username, req.body.password, req.body.email, req.connection.remoteAddress, function(err, data) {
+						if (err) {
+							callback(err);
+						} else if (!data) {
+							callback(null, {
+								user: {
+									msg: 'user_creation_failed'
+								}
+							});
+						} else {
+							user = data;
+							callback();
+						}
+					});
+				} else {
+					callback();
+				}
+			},
+			function(callback) {
+				if (save && Object.keys(user).length > 0) {
+					self.setSession(user, req, function() {
+						var pos;
+						if (~(pos = req.routes.indexOf(self.command))) {
+							req.routes.splice(pos, 1);
+							res.writeHead(302, {
+								'Location': '/' + req.routes.join('/')
+							});
+							res.end();
+							callback();
+						} else {
+							callback();
+						}
+					});
+				} else {
+					callback();
+				}
+			}
+		],
+		function(err, results) {
+			if (err) {
+				callback(err);
+			} else {
+				var errors = {};
+				for (var key in results) {
+					if (typeof results[key] !== 'undefined') {
+						errors = merge(errors, results[key]);
+					}
+				}
+				if(Object.keys(errors).length > 0) {
+					self.renderPage('signup', errors, req, res, callback);
+				} else {
+					callback();
+				}
+			}
+		});
+	} else {
+		this.renderPage('signup', {}, req, res, callback);
 	}
-	this.renderPage('signup', errors, req, res, callback);
 };
 
 /**

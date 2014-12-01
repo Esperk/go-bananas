@@ -46,11 +46,11 @@ Form.prototype.submit = function(event, done) {
 				if(data.success === true) {
 					$(self.form).trigger('submit', [true]);
 				} else {
-					console.log(data);
 					for(var key in data.fields) {
 						var input = data.fields[key],
 							item = self.form.querySelector('*[name="'+input.param+'"]');
 						item.parentNode.classList.add('required');
+						// TODO: add messages!
 					}
 				}
 			});

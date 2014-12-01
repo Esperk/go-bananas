@@ -7,14 +7,9 @@
 
 "use strict";
 
-var __models = global.__models,
-	fs = require('fs'),
-	async = require('async'),
-	User = require(__models + 'user'),
+var async = require('async'),
 	twinBcrypt = require('twin-bcrypt'),
-	crypto = require('crypto'),
-	salt = '#&a91279&*(*&T^&*%Th7|22fs7d',
-	merge = require('utils-merge');
+	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
 
 /**
  * Represents Authentication.
@@ -142,10 +137,10 @@ Authentication.prototype.checkPost = function(req, callback) {
 	for(var key in req.body) {
 		switch(key) {
 			case 'username':
-				req.checkBody(key, 'required').notEmpty();
+				req.checkBody(key, 'required').len(4, 20);
 				break;
 			case 'password':
-			case 'password_confirm':
+			case 'confirm_password':
 				req.checkBody(key, 'required_len_4_20').len(4, 20);
 				break;
 			case 'email':
