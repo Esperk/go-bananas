@@ -32,6 +32,10 @@ module.exports = exports = function(opt) {
 
 	// create middleware server
 	var server = connect()
+		// static files
+		.use(serve("./", {
+			maxAge: 3600000
+		}))
 		// sessions
 		.use(session({
 			keys: ['key1']
@@ -45,10 +49,6 @@ module.exports = exports = function(opt) {
 		}))
 		// validator
 		.use(validator())
-		// static files
-		.use(serve("./", {
-			maxAge: 3600000
-		}))
 		// routes
 		.use(routes)
 		// bananas

@@ -18,6 +18,7 @@ var bananas = require('./index.js'),
 			pretty: true
 		},
 		panel: {
+			path: '/panel/',
 			theme: 'default'
 		},
 		theme: 'default'

@@ -18,7 +18,8 @@ function Index() {
 	return function(req, res, callback) {
 		// first load authentication
 		var auth = new Authentication(),
-			authenticated = false;
+			authenticated = false,
+			self = this;
 
 		async.series([
 			function(callback) {
@@ -35,6 +36,9 @@ function Index() {
 			},
 			function(callback) {
 				if (authenticated) {
+
+
+
 					callback(null, 'Logged in');
 				} else {
 					callback();
@@ -66,6 +70,10 @@ function Index() {
 			}
 		});
 	}
+}
+
+Index.prototype.load = function(req, res, callback) {
+	console.log(req.routes);
 }
 
 module.exports = exports = Index;
