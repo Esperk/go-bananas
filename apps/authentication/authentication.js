@@ -8,7 +8,7 @@
 "use strict";
 
 var async = require('async'),
-	twinBcrypt = require('twin-bcrypt'),
+	bcrypt = require('bcrypt'),
 	salt = '#&a91279&*(*&T^&*%Th7|22fs7d';
 
 /**
@@ -92,11 +92,16 @@ Authentication.prototype.logout = function(req, res, callback) {
  */
 Authentication.prototype.loggedIn = function(req, callback) {
 	if (typeof req.session.uid !== 'undefined' && req.session.ustr !== 'undefined') {
-		twinBcrypt.compare(req.session.uid + salt + req.connection.remoteAddress + req.headers['user-agent'], req.session.ustr, function(result) {
-			callback(result);
+		// Load hash from your password DB.
+		bcrypt.compare(req.session.uid + salt + req.connection.remoteAddress + req.headers['user-agent'], req.session.ustr, function(err, result) {
+			if (err) {
+				callback(err);
+			} else {
+				callback(null, result);
+			}
 		});
 	} else {
-		callback(false);
+		callback(null, false);
 	}
 };
 
@@ -164,8 +169,10 @@ Authentication.prototype.checkPost = function(req, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.validatePassword = function(user, password, callback) {
-	twinBcrypt.compare(password, user.password, function(equal) {
-		if (equal) {
+	bcrypt.compare(password, user.password, function(err, equal) {
+		if (err) {
+			callback(err);
+		} else if (equal) {
 			callback();
 		} else {
 			callback({
@@ -187,7 +194,7 @@ Authentication.prototype.validatePassword = function(user, password, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.setSession = function(user, req, callback) {
-	twinBcrypt.hash(user._id + salt + req.connection.remoteAddress + req.headers['user-agent'], function(hash) {
+	bcrypt.hash(user._id + salt + req.connection.remoteAddress + req.headers['user-agent'], 10, function(err, hash) {
 		req.session.uid = user._id;
 		req.session.ustr = hash;
 		callback();

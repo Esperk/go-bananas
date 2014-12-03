@@ -37,11 +37,15 @@ function Authentication(dpt) {
 		if (self.routes.logout === req.routes[depth]) {
 			self.request(depth, req, res, callback);
 		} else {
-			self.loggedIn(req, function(loggedIn) {
-				if (loggedIn) {
-					callback(null, true);
+			self.loggedIn(req, function(err, loggedIn) {
+				if (err) {
+					callback(err);
 				} else {
-					self.request(depth, req, res, callback);
+					if (loggedIn) {
+						callback(null, true);
+					} else {
+						self.request(depth, req, res, callback);
+					}
 				}
 			});
 		}
