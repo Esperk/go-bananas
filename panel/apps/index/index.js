@@ -8,6 +8,8 @@
 
 var __root = global.__root,
 	async = require('async'),
+	path = require('path'),
+	fs = require('fs'),
 	Authentication = require(__root + 'panel/apps/authentication/authentication');
 
 /**
@@ -15,11 +17,13 @@ var __root = global.__root,
  * @constructor
  */
 function Index() {
+	var self = this;
+
 	return function(req, res, callback) {
 		// first load authentication
 		var auth = new Authentication(),
 			authenticated = false,
-			self = this;
+			app;
 
 		async.series([
 			function(callback) {
@@ -36,10 +40,33 @@ function Index() {
 			},
 			function(callback) {
 				if (authenticated) {
-
-
-
-					callback(null, 'Logged in');
+					self.load(req, res, function(err, application) {
+						if (err) {
+							callback(err);
+						}
+						if (typeof application === 'string') {
+							callback(null, application);
+						} else {
+							app = application;
+							callback();
+						}
+					});
+				} else {
+					callback();
+				}
+			},
+			function(callback) {
+				if (authenticated && app) {
+					app(req, res, function(err, data) {
+						if (err) {
+							callback(err);
+						}
+						if (!data) {
+							callback(null, 'No data received!');
+						} else {
+							callback(null, data);
+						}
+					});
 				} else {
 					callback();
 				}
@@ -72,8 +99,43 @@ function Index() {
 	}
 }
 
+/**
+ * load
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {function} callback
+ */
 Index.prototype.load = function(req, res, callback) {
-	console.log(req.routes);
+	var route = arrayDiff(req.routes, req.panel.split('/')),
+		app = 'dashboard',
+		directory = __root + 'panel/apps/',
+		appFile = '';
+
+	if (route.length > 0) {
+		app = route[0];
+	}
+
+	appFile = path.normalize(directory + app +'/' + app + '.js');
+	
+	fs.exists(appFile, function(exists) {
+		if (!exists) {
+			callback(null, app + ' not found!');
+		} else {
+			var Application = require(appFile);
+			callback(null, new Application());
+		}
+	});
+};
+
+/**
+ * arrayDiff
+ * helper function
+ */
+function arrayDiff(a, b) {
+	return a.filter(function(i) {
+		return !~b.indexOf(i);
+	});
 }
 
 module.exports = exports = Index;

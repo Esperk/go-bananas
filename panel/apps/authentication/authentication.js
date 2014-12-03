@@ -116,7 +116,7 @@ Authentication.prototype.login = function(req, res, callback) {
 		function(err) {
 			if (err) {
 				if (typeof err === 'object') {
-					self.renderPage('sign_in', err, req, res, callback);
+					self.renderPage('sign_in', err, callback);
 				} else {
 					callback(err);
 				}
@@ -125,7 +125,7 @@ Authentication.prototype.login = function(req, res, callback) {
 			}
 		});
 	} else {
-		this.renderPage('sign_in', errors, req, res, callback);
+		this.renderPage('sign_in', errors, callback);
 	}
 };
 
@@ -244,14 +244,14 @@ Authentication.prototype.signup = function(req, res, callback) {
 					}
 				}
 				if(Object.keys(errors).length > 0) {
-					self.renderPage('signup', errors, req, res, callback);
+					self.renderPage('signup', errors, callback);
 				} else {
 					callback();
 				}
 			}
 		});
 	} else {
-		this.renderPage('signup', {}, req, res, callback);
+		this.renderPage('signup', {}, callback);
 	}
 };
 
@@ -270,7 +270,7 @@ Authentication.prototype.recover = function(req, res, callback) {
 	if(req.method === 'POST') {
 		console.log('HANDLE POST');
 	}
-	this.renderPage('recovery', errors, req, res, callback);
+	this.renderPage('recovery', errors, callback);
 };
 
 /**
@@ -279,11 +279,9 @@ Authentication.prototype.recover = function(req, res, callback) {
  * Function that parses the given template with the given variables
  * @param {string} page - Which page to parse
  * @param {object} errors - Object that contains conflicting fields and error messages
- * @param {object} req
- * @param {object} res
  * @param {function} callback - The callback function
  */
-Authentication.prototype.renderPage = function(page, errors, req, res, callback) {
+Authentication.prototype.renderPage = function(page, errors, callback) {
 	parser.parse(__theme + 'apps/authentication/jade/authentication.jade', 'authentication', {
 		page: page,
 		errors: errors

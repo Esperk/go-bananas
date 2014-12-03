@@ -43,7 +43,7 @@ Authentication.prototype.request = function(depth, req, res, callback) {
 			return self.routes[key];
 		}),
 		param = (function() {
-			if (typeof req.routes[depth] !== 'undefined') {
+			if (typeof req.routes[depth] !== 'undefined' && ~routes.indexOf(req.routes[depth])) {
 				return req.routes[depth];
 			} else {
 				return 'login';
