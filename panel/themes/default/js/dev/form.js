@@ -149,8 +149,7 @@ Form.prototype.getAddon = function(field) {
  *
  */
 Form.prototype.addInlineError = function(field, addon, message) {
-	var errorField = document.createElement('div'),
-		errorMessage = document.createElement('span'),
+	var errorMessage = document.createElement('span'),
 		errorText = document.createTextNode(message);
 
 	errorMessage.appendChild(errorText);
@@ -165,8 +164,7 @@ Form.prototype.addInlineError = function(field, addon, message) {
 			}, 200);
 		},
 		mouseleave: function() {
-			var message = $(this).prev(),
-				width = getRealWidth(message);
+			var message = $(this).prev();
 			message.animate({
 				width: '0px'
 			}, 200);
