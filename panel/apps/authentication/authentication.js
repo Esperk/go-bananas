@@ -116,7 +116,7 @@ Authentication.prototype.login = function(req, res, callback) {
 		function(err) {
 			if (err) {
 				if (typeof err === 'object') {
-					self.renderPage('sign_in', err, callback);
+					self.renderPage('sign_in', err, req, callback);
 				} else {
 					callback(err);
 				}
@@ -125,7 +125,7 @@ Authentication.prototype.login = function(req, res, callback) {
 			}
 		});
 	} else {
-		this.renderPage('sign_in', errors, callback);
+		this.renderPage('sign_in', errors, req, callback);
 	}
 };
 
@@ -194,11 +194,12 @@ Authentication.prototype.signup = function(req, res, callback) {
 				}
 			},
 			function(callback) {
-				if(save) {
+				if (save === true) {
 					users.addUser(req.body.username, req.body.password, req.body.email, req.connection.remoteAddress, function(err, data) {
 						if (err) {
 							callback(err);
-						} else if (!data) {
+						}
+						if (!data) {
 							callback(null, {
 								user: {
 									msg: 'user_creation_failed'
@@ -244,14 +245,14 @@ Authentication.prototype.signup = function(req, res, callback) {
 					}
 				}
 				if(Object.keys(errors).length > 0) {
-					self.renderPage('signup', errors, callback);
+					self.renderPage('signup', errors, req, callback);
 				} else {
 					callback();
 				}
 			}
 		});
 	} else {
-		this.renderPage('signup', {}, callback);
+		this.renderPage('signup', {}, req, callback);
 	}
 };
 
@@ -270,7 +271,7 @@ Authentication.prototype.recover = function(req, res, callback) {
 	if(req.method === 'POST') {
 		console.log('HANDLE POST');
 	}
-	this.renderPage('recovery', errors, callback);
+	this.renderPage('recovery', errors, req, callback);
 };
 
 /**
@@ -281,9 +282,10 @@ Authentication.prototype.recover = function(req, res, callback) {
  * @param {object} errors - Object that contains conflicting fields and error messages
  * @param {function} callback - The callback function
  */
-Authentication.prototype.renderPage = function(page, errors, callback) {
+Authentication.prototype.renderPage = function(page, errors, req, callback) {
 	parser.parse(__theme + 'apps/authentication/jade/authentication.jade', 'authentication', {
 		page: page,
+		post: req.body,
 		errors: errors
 	}, function(err, data) {
 		if (err) {

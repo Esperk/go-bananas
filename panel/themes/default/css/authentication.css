@@ -46,6 +46,10 @@ form div.field {
   width: 100%;
 }
 /* line 24, ../sass/_elements.scss */
+form div.field span.error-message {
+  display: none;
+}
+/* line 28, ../sass/_elements.scss */
 form div.field span.field-addon {
   display: table-cell;
   width: 1%;
@@ -73,11 +77,11 @@ form div.field span.field-addon {
   -webkit-border-bottom-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 32, ../sass/_elements.scss */
+/* line 36, ../sass/_elements.scss */
 form div.field span.field-addon i {
   margin-top: 1px;
 }
-/* line 36, ../sass/_elements.scss */
+/* line 40, ../sass/_elements.scss */
 form div.field span.field-addon + input {
   display: table-cell;
   background-color: #ffffff !important;
@@ -101,7 +105,7 @@ form div.field span.field-addon + input {
   -webkit-border-bottom-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
-/* line 42, ../sass/_elements.scss */
+/* line 46, ../sass/_elements.scss */
 form div.field input {
   border: 0px;
   width: 100%;
@@ -121,19 +125,19 @@ form div.field input {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 52, ../sass/_elements.scss */
+/* line 56, ../sass/_elements.scss */
 form div.field.required span.field-addon {
-  color: #f09898;
-  background-color: #fecfcf !important;
+  color: #ff9393;
+  background-color: #ffd3d3 !important;
   border-width: 1px;
   border-style: solid;
-  border-color: #fda0a0;
+  border-color: #ff9393;
   -moz-border-radius: 0.25rem;
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
-  -moz-box-shadow: #f09898 0px 1px 0px;
-  -webkit-box-shadow: #f09898 0px 1px 0px;
-  box-shadow: #f09898 0px 1px 0px;
+  -moz-box-shadow: #f28b8b 0px 1px 0px;
+  -webkit-box-shadow: #f28b8b 0px 1px 0px;
+  box-shadow: #f28b8b 0px 1px 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -145,22 +149,22 @@ form div.field.required span.field-addon {
   -webkit-border-bottom-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 56, ../sass/_elements.scss */
+/* line 60, ../sass/_elements.scss */
 form div.field.required span.field-addon + input {
   background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
-  border-color: #fda0a0;
+  border-color: #ff9393;
   -moz-border-radius: 0.25rem;
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
-  -moz-box-shadow: #f09898 0px 1px 0px;
-  -webkit-box-shadow: #f09898 0px 1px 0px;
-  box-shadow: #f09898 0px 1px 0px;
+  -moz-box-shadow: #f28b8b 0px 1px 0px;
+  -webkit-box-shadow: #f28b8b 0px 1px 0px;
+  box-shadow: #f28b8b 0px 1px 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-left: 1px solid #fda0a0;
+  border-left: 1px solid #ff9393;
   -moz-border-radius-topleft: 0px;
   -webkit-border-top-left-radius: 0px;
   border-top-left-radius: 0px;
@@ -168,34 +172,93 @@ form div.field.required span.field-addon + input {
   -webkit-border-bottom-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
-/* line 60, ../sass/_elements.scss */
+/* line 65, ../sass/_elements.scss */
+form div.field.required span.error-message {
+  display: block;
+  position: absolute;
+  width: 0px;
+  overflow: hidden;
+  height: 2.25rem;
+  vertical-align: middle;
+  margin-left: 3.7rem;
+  font-size: 0.7em;
+  line-height: 2.25rem;
+  color: #ff9393;
+  background-color: #ffffff !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ff9393;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  -moz-box-shadow: #f28b8b 0px 1px 0px;
+  -webkit-box-shadow: #f28b8b 0px 1px 0px;
+  box-shadow: #f28b8b 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-right: 0px none;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-left: 0px none;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+/* line 79, ../sass/_elements.scss */
 form div.field.required input {
   background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
-  border-color: #fda0a0;
+  border-color: #ff2727;
   -moz-border-radius: 0.25rem;
   -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
-  -moz-box-shadow: #f09898 0px 1px 0px;
-  -webkit-box-shadow: #f09898 0px 1px 0px;
-  box-shadow: #f09898 0px 1px 0px;
+  -moz-box-shadow: #f22525 0px 1px 0px;
+  -webkit-box-shadow: #f22525 0px 1px 0px;
+  box-shadow: #f22525 0px 1px 0px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 65, ../sass/_elements.scss */
+/* line 84, ../sass/_elements.scss */
 form div.field.error {
-  padding-left: 1rem;
+  background-color: #ffd3d3 !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ff9393;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  -moz-box-shadow: #f28b8b 0px 1px 0px;
+  -webkit-box-shadow: #f28b8b 0px 1px 0px;
+  box-shadow: #f28b8b 0px 1px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 0.7em;
   font-weight: bold;
   color: #ff2727;
+  padding-left: 1rem;
+  vertical-align: middle;
+  display: none;
 }
-/* line 73, ../sass/_elements.scss */
+/* line 93, ../sass/_elements.scss */
+form div.field.error span {
+  line-height: 2.25rem;
+}
+/* line 99, ../sass/_elements.scss */
 form div.submit {
   text-align: center;
 }
-/* line 76, ../sass/_elements.scss */
+/* line 102, ../sass/_elements.scss */
 form div.submit input[type="submit"] {
   height: 2.25rem;
   cursor: pointer;

@@ -20,7 +20,11 @@ form {
 		margin-bottom: 1rem;
 		display: table;
 		width: 100%;
-		
+
+		span.error-message {
+			display: none;
+		}
+
 		span.field-addon {
 			display: table-cell;
 			width: 1%;
@@ -48,25 +52,47 @@ form {
 		}
 
 		&.required {
-			$color: #fda0a0;
+			$color: #ff2727;
 			span.field-addon {
-				color: shade($color, 5%);
-				@include boxed($color, tint($color, 50%), (right 0px 0px));
+				color: tint($color, 50%);
+				@include boxed(tint($color, 50%), tint($color, 80%), (right 0px 0px));
 
 				& + input {
-					@include boxed($color, #ffffff, (left 1px 0px));
+					@include boxed(tint($color, 50%), #ffffff, (left 1px 0px));
 				}
 			}
+
+			span.error-message {
+				display: block;
+				position: absolute;
+				width: 0px;
+				overflow: hidden;
+				height: 2.25rem;
+				vertical-align: middle;
+				margin-left: 3.7rem;
+				font-size: 0.7em;
+				line-height: 2.25rem;
+				color: tint($color, 50%);
+				@include boxed(tint($color, 50%), #ffffff, (right 0px 0px, left 0px 0px));
+			}
+			
 			input {
 				@include boxed($color);
 			}
 		}
 
 		&.error {
-			padding-left: 1rem;
+			$color: #ff2727;
+			@include boxed(tint($color, 50%), tint($color, 80%));
 			font-size: 0.7em;
 			font-weight: bold;
-			color: #ff2727;
+			color: $color;
+			padding-left: 1rem;
+			vertical-align: middle;
+			display: none;
+			span {
+				line-height: 2.25rem;
+			}
 		}
 	}
 

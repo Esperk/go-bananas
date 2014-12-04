@@ -1,7 +1,7 @@
-/*
- * Go Bananas
- *
- * Just some js..
+/**
+ * panel theme lib
+ * 
+ * do stuff on document ready
  */
 
 $(function() {

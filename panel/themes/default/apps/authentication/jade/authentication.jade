@@ -8,19 +8,19 @@ html
 			figure
 				img.logo(src='/panel/themes/default/images/go-bananas-logo.png', width='600', height='228')
 			form#authentication.validate(method='POST', novalidate)
-				each error in errors
-					div.field.error
-						span #{error.msg}
+				each error, key in errors
+					div.field.error(data-field='#{key}')
+						span #{language.errors[error.msg]}
 				if page != 'sign_in'
 					div.field
 						span.field-addon 
 							i.fa.fa-envelope.fa-fw
-						input(type='text', name='email', placeholder='#{language.field.email.label}', required)
+						input(type='text', name='email', placeholder='#{language.field.email.label}', required, value=post.email ? '#{post.email}' : '')
 				if page == 'sign_in' || page == 'signup'
 					div.field
 						span.field-addon 
 							i.fa.fa-user.fa-fw
-						input(type='text', name='username', placeholder='#{language.field.username.label}', required)
+						input(type='text', name='username', placeholder='#{language.field.username.label}', required, value=post.username ? '#{post.username}' : '')
 					div.field
 						span.field-addon 
 							i.fa.fa-lock.fa-fw

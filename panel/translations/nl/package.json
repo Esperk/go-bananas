@@ -1,11 +1,18 @@
 {
 	"authentication": {
+		"errors": {
+			"username_404": "Deze gebruikersnaam bestaat niet",
+			"username_exists": "Deze gebruikersnaam is al bezet",
+			"email_exists": "Dit e-mail adres is al in gebruik",
+			"no_match": "Wachtwoorden komen niet overeen",
+			"user_creation_failed": "Uw account kon niet aangemaakt worden",
+			"required": "Dit veld is verplicht",
+			"required_len_4_20": "Uw invoer dient tussen de 4 en 20 karakters te zijn",
+			"valid_email": "U dient een geldig e-mail adres in te voeren",
+			"validation_failed": "Gebruikersnaam en wachtwoord komen niet overeen",
+			"general": "Oeps, er is een onbekende error opgetreden..."
+		},
 		"field": {
-			"error": {
-				"username": "Helaas, deze gebruikersnaam is al bezet",
-				"combination": "Sorry, de combinatie tussen de gebruikersnaam en wachtwoord klopt niet",
-				"general": "Oeps, er is een onbekende error opgetreden..."
-			},
 			"email": {
 				"label": "E-mail adres"
 			},

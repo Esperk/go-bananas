@@ -119,6 +119,7 @@ Authentication.prototype.parseXhr = function(req, callback) {
 		if (err) {
 			response = {
 				success: false,
+				translation: 'authentication',
 				fields: err
 			};
 		} else {
