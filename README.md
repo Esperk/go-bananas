@@ -3,9 +3,7 @@ Go Bananas
 > The no nonsense Node.js Web framework
 
 ## Getting Started
-Nothing to do here, work in progress
-Don't fork or clone!!
-Working hard to get 0.1.0 ready for beta. 
+Nothing to do here, work in progress. Don't fork or clone!! Working hard to get 0.1.0 ready for beta. 
 
 ## TODO
 Todo list
@@ -39,7 +37,6 @@ Todo list
 
 - Create install instructions (mac/windows/linux?)
 
-
 ###v0.2.0
 - Create susy template
 	- rem vs em vs px
@@ -49,9 +46,6 @@ Todo list
 - User management
 	- Add, edit, delete, reset pass
 - Roles and permissions
-
-
-
 
 ##Just Go Bananas
 It's an idea, nothing serious yet
