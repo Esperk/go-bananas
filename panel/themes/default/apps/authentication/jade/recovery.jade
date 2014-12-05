@@ -1,0 +1,25 @@
+doctype html
+html
+	include /jade/head
+		block head
+			link(rel='stylesheet', href='/public/panel/themes/default/css/authentication.css')
+	body
+		div.login
+			figure
+				img.logo(src='/public/panel/themes/default/images/go-bananas-logo.png', width='600', height='228')
+
+			form#authentication.validate(method='POST', novalidate)
+				each error, key in errors
+					div.field.error(data-field='#{key}')
+						span #{language.errors[error.msg]}
+				div.field
+					span.field-addon 
+						i.fa.fa-envelope.fa-fw
+					input(type='text', name='email', placeholder='#{language.field.email.label}', required, value=post.email ? '#{post.email}' : '')
+				div.submit
+					input(type='submit', value='#{language.button.recovery.label}')
+				div.links
+					a(href='/panel/') #{language.links.sign_in.label}
+				div.links
+					a(href='/panel/signup') #{language.links.signup.label}
+		include /jade/foot

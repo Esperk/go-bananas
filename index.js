@@ -15,9 +15,10 @@ global.__models = __dirname + '/models/';
 var connect = require('connect'),
 	Bananas = require('./lib/bananas'),
 	Routes = require('./lib/routes'),
+	Environment = require('./lib/environment'),
 	cookies = require('cookies'),
-	serve = require('serve-static'),
 	bodyParser = require('body-parser'),
+	serve = require('serve-static'),
 	validator = require('express-validator'),
 	session = require('cookie-session');
 
@@ -30,16 +31,18 @@ module.exports = exports = function(opt) {
 	// routes
 	var routes = new Routes(options);
 
+	// environment
+	var environment = new Environment(options);
+
 	// create middleware server
 	var server = connect()
-		// static files
-		.use(serve("./", {
-			maxAge: 3600000
-		}))
 		// sessions
 		.use(session({
 			keys: ['key1']
 		}))
+		// serve static
+		// TODO: better ways?
+		.use('/public', serve('./public', {maxAge: 3600000}))		
 		// cookies
 		.use(cookies())
 		// body parser
@@ -51,6 +54,8 @@ module.exports = exports = function(opt) {
 		.use(validator())
 		// routes
 		.use(routes)
+		// environment
+		.use(environment)
 		// bananas
 		.use(app);
 

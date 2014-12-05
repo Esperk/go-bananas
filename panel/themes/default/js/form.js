@@ -129,7 +129,7 @@ Form.prototype.parseErrors = function(translation, errors) {
 };
 
 /**
- *
+ * getAddon
  */
 Form.prototype.getAddon = function(field) {
 	if(field instanceof jQuery) {
@@ -146,28 +146,47 @@ Form.prototype.getAddon = function(field) {
 };
 
 /**
- *
+ * addInlineError
  */
 Form.prototype.addInlineError = function(field, addon, message) {
 	var errorMessage = document.createElement('span'),
-		errorText = document.createTextNode(message);
+		errorText = document.createTextNode(message),
+		selecting = false,
+		visible = false,
+		message = $(errorMessage);
 
 	errorMessage.appendChild(errorText);
 	errorMessage.classList.add('error-message');
 	field.insertBefore(errorMessage, addon);
+	
+	$(field).bind({
+		mousedown: function() {
+			selecting = true;
+		},
+		mouseup: function() {
+			selecting = false;
+		}
+	})
 	$(addon).bind({
 		mouseenter: function() {
-			var message = $(this).prev(),
-				width = getRealWidth(message);
-			message.animate({
-				width: width+'px'
-			}, 200);
+			if (!selecting) {
+				visible = true;
+				message.stop().animate({
+					width: getRealWidth(message)+'px'
+				}, 200);
+			}
+		},
+		mouseover: function() {
+			if (!visible && !selecting) {
+				$(this).trigger('mouseenter');
+			}
 		},
 		mouseleave: function() {
-			var message = $(this).prev();
-			message.animate({
+			message.stop().animate({
 				width: '0px'
-			}, 200);
+			}, 200, function() {
+				visible = false;
+			});
 		}
 	});
 };

@@ -10,6 +10,7 @@ var userSchema = new Schema({
   secret: String,
   active: Boolean,
   recovery: Date,
+  recovery_hash: String,
   created: { type: Date, default: Date.now },
   modified: { type: Date, default: Date.now },
   date_of_birth: Date,

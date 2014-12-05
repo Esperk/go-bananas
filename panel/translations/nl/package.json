@@ -1,4 +1,8 @@
 {
+	"recover_mail": {
+		"intro": "Instructie e-mail om uw wachtwoord te herstellen",
+		"title": "Uw Go Bananas wachtwoord herstellen"
+	},
 	"authentication": {
 		"errors": {
 			"username_404": "Deze gebruikersnaam bestaat niet",
@@ -10,6 +14,7 @@
 			"required_len_4_20": "Uw invoer dient tussen de 4 en 20 karakters te zijn",
 			"valid_email": "U dient een geldig e-mail adres in te voeren",
 			"validation_failed": "Gebruikersnaam en wachtwoord komen niet overeen",
+			"email_not_found": "Het opgegeven e-mail adres is niet bij ons bekend",
 			"general": "Oeps, er is een onbekende error opgetreden..."
 		},
 		"field": {

@@ -14,6 +14,7 @@ var __root = global.__root,
 	users = require(__lib + 'users'),
 	parser = require(__lib + 'parser'),
 	merge = require('utils-merge'),
+	mailer = require(__lib + 'mailer'),
 	authApp = require(__root + 'apps/authentication/authentication');
 
 /**
@@ -237,18 +238,17 @@ Authentication.prototype.signup = function(req, res, callback) {
 		function(err, results) {
 			if (err) {
 				callback(err);
+			}
+			var errors = {};
+			for (var key in results) {
+				if (typeof results[key] !== 'undefined') {
+					errors = merge(errors, results[key]);
+				}
+			}
+			if(Object.keys(errors).length > 0) {
+				self.renderPage('signup', errors, req, callback);
 			} else {
-				var errors = {};
-				for (var key in results) {
-					if (typeof results[key] !== 'undefined') {
-						errors = merge(errors, results[key]);
-					}
-				}
-				if(Object.keys(errors).length > 0) {
-					self.renderPage('signup', errors, req, callback);
-				} else {
-					callback();
-				}
+				callback();
 			}
 		});
 	} else {
@@ -266,12 +266,105 @@ Authentication.prototype.signup = function(req, res, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.recover = function(req, res, callback) {
-	var errors = {};
+	var self = this,
+		send = true,
+		user = {},
+		mail = {},
+		hash = '';
 
-	if(req.method === 'POST') {
-		console.log('HANDLE POST');
+	if (req.xhr) {
+		this.parseXhr(req, callback);
+	} else if(req.method === 'POST') {
+		async.series([
+			function(callback) {
+				users.findUserByEmail(req.body.email, function(err, data) {
+					if (err) {
+						callback(err);
+					}
+					if (!data) {
+						send = false;
+						callback(null, {
+							email: {
+								msg: 'email_not_found'
+							}
+						});
+					} else {
+						user = data;
+						callback();
+					}
+				});
+			},
+			function(callback) {
+				if (send) {
+					users.activateRecovery(user, function(err, result) {
+						if (err) {
+							callback(err);
+						} else {
+							hash = result;
+							callback();
+						}
+					});
+				} else {
+					callback();
+				}
+			},
+			function(callback) {
+				if(hash !== '') {
+					mailer.renderMail({
+						templateDirectory: __theme + 'apps/authentication/jade/mails/',
+						template: 'recovery',
+						email: req.body.email,
+						translation: 'recover_mail',
+						locals: {
+							user: user,
+							hash: hash
+						} 
+					}, function(err, data) {
+						if (err) {
+							callback(err);
+						}
+						mail = data;
+						callback();
+					});
+				} else {
+					callback();
+				}
+			}, function(callback) {
+				if(typeof mail.html !== 'undefined') {
+					mailer.sendMail(mail, user, function(err, response) {
+						if (err) {
+							callback(err);
+						}
+						if (response.substr(0, 12) === '250 2.0.0 OK') {
+							callback();
+						} else {
+							callback('Mail not send');
+						}
+					});
+				} else {
+					callback();
+				}
+			}
+		], function(err, results) {
+			if (err) {
+				callback(err);
+			}
+			var errors = {};
+			for (var key in results) {
+				if (typeof results[key] !== 'undefined') {
+					errors = merge(errors, results[key]);
+				}
+			}
+			if(Object.keys(errors).length > 0) {
+				self.renderPage('recovery', errors, req, callback);
+			} else {
+				res.end();
+				callback();
+			}
+		});
+	} else {
+		this.renderPage('recovery', {}, req, callback);
 	}
-	this.renderPage('recovery', errors, req, callback);
 };
 
 /**
@@ -283,8 +376,7 @@ Authentication.prototype.recover = function(req, res, callback) {
  * @param {function} callback - The callback function
  */
 Authentication.prototype.renderPage = function(page, errors, req, callback) {
-	parser.parse(__theme + 'apps/authentication/jade/authentication.jade', 'authentication', {
-		page: page,
+	parser.parse(__theme + 'apps/authentication/jade/' + page + '.jade', 'authentication', {
 		post: req.body,
 		errors: errors
 	}, function(err, data) {

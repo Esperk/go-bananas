@@ -1,11 +1,23 @@
 {
+	"recover_mail": {
+		"intro": "Instruction mail for resetting your password",
+		"title": "Recover your Go Bananas password"
+	},
 	"authentication": {
+		"errors": {
+			"username_404": "This username doesn't exists",
+			"username_exists": "This username is already taken",
+			"email_exists": "This email address is already used",
+			"no_match": "Passwords don't match",
+			"user_creation_failed": "Your account couldn't be created",
+			"required": "This field is required",
+			"required_len_4_20": "This fields needs to be between 4 and 20 characters of length",
+			"valid_email": "You didn't provide a valid email address",
+			"validation_failed": "Username and password don't match",
+			"email_not_found": "The provided email address does not exist in our database",
+			"general": "Oops, an error occurred..."
+		},
 		"field": {
-			"error": {
-				"username": "Sorry, the username is already taken",
-				"combination": "Sorry, the provided username and password didn't match",
-				"general": "Oops, an error occurred..."
-			},
 			"email": {
 				"label": "Email address"
 			},
